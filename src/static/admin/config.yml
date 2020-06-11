@@ -1,0 +1,33 @@
+backend:
+  name: github
+  repo: CAN-Together/cape-town-together-website
+
+display_url: https://capetowntogether.net
+media_folder: src/static/media
+public_folder: /media
+
+collections:
+  - name: pages
+    label: Pages
+    folder: src/data/pages
+    create: true
+
+    fields: 
+      - name: title
+        label: Title
+        default: about
+        widget: string
+
+      - name: url
+        label: URL
+        widget: string
+
+
+      - name: order
+        label: Order
+        widget: number
+
+
+      - name: body
+        label: Content
+        widget: markdown
