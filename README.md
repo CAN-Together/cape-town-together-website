@@ -19,8 +19,8 @@
 
 - `npm start`: Starts a local instance of the website with mock data.
 - `npm run build`: Builds a production version of the website into the `build/` folder.
-- `npm run stroybook`: Starts a local instance of Storybook that contains documentation/tests for recurring UI patterns.
-- 
+- `npm run storybook`: Starts a local instance of Storybook that contains documentation/tests for recurring UI patterns.
+
 *Note that you are welcome to use Yarn too if you prefer it over the standard NPM CLI tool*
 
 ## Technologies
