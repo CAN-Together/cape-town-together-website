@@ -1,0 +1,38 @@
+<%#
+    Arguments:
+
+    - href: string
+    - variant: 'default' | 'flat'
+    - disabled: boolean
+    - target: '_blank' | '_self'
+    - label: string
+%>
+
+<% if (typeof href !== 'undefined') { %>
+    <a 
+        class="button <%= variant === 'default' ? 'button_default' : '' %>"
+        href="<%= href %>"
+        <% typeof disabled !== 'undefined' && disabled !== false ? 'disabled' : '' %>
+        target="<% typeof target !== 'undefined' ? target : '_self' %>"
+        >
+        <span class="button__text"><%= label %></span>
+        <span class="button__arrow"></span>
+
+        <span class="button__ripple">
+            <span class="button__circle"></span>
+        </span>
+    </a>
+<% } else { %>
+    <button 
+        class="button <%= variant === 'default' ? 'button_default' : '' %>"
+        <% typeof disabled !== 'undefined' && disabled !== false ? 'disabled' : '' %>
+    >
+        <span class="button__text"><%= label %></span>
+        <span class="button__arrow"></span>
+
+        <span class="button__ripple">
+            <span class="button__circle"></span>
+        </span>
+    </button>
+<% } %>
+
