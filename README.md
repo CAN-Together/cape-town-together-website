@@ -15,11 +15,12 @@
 3. Run `npm install` in the root folder of the repository to install all dependencies.
 4. Run `npm start` in the root folder to spin up a local instance of the website.
 
+_Note that if you are using VS Code please install the [EJS Syntax plugin](https://marketplace.visualstudio.com/items?itemName=DigitalBrainstem.javascript-ejs-support) to get syntax highlighting._
+
 ## NPM Scripts
 
 - `npm start`: Starts a local instance of the website with mock data.
 - `npm run build`: Builds a production version of the website into the `build/` folder.
-- `npm run storybook`: Starts a local instance of Storybook that contains documentation/tests for recurring UI patterns.
 
 *Note that you are welcome to use Yarn too if you prefer it over the standard NPM CLI tool*
 
@@ -33,5 +34,4 @@
 - [Netlify CMS](https://www.netlifycms.org/) is used to edit/create new pages.
 - [Preact](https://preactjs.com/) and [HTM](https://github.com/developit/htm) is used to create interactive widgets
 - [Babel](https://babeljs.io/) is used to transpile ES6+ for older browsers.
-- [Storybook](https://storybook.js.org/) is used to document and test recurring UI patterns.
 

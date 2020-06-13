@@ -15,9 +15,11 @@
             <div class="homepage__section">
               <%- include('../includes/title', { icon: 'hand', text: ['Hello', 'World!'] }) %>
 
-              <p class="homepage__section-blurb">
-                Hello
-              </p>
+              <ul class="homepage__list">
+                <li class="homepage__item">
+                  <%- include('../includes/button', { href: '#', label: 'Click me!', variant: 'default' }) %>
+                </li>
+              </ul>
             </div>
 
             </div>
