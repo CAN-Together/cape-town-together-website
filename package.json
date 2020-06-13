@@ -6,8 +6,6 @@
     "js:start": "babel src/js/**/*.js --out-dir src/static/assets --watch",
     "millimetr:build": "millimetr build",
     "millimetr:start": "millimetr develop",
-    "storybook:start": "start-storybook -s src/static",
-    "storybook": "npm-run-all --parallel js:start storybook:start",
     "build": "npm run js:build && npm run millimetr:build",
     "start": "npm-run-all --parallel js:start millimetr:start"
   },

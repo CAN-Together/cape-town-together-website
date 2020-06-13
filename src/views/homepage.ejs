@@ -1,0 +1,31 @@
+<!doctype html>
+
+<html lang="<%= millimetr.globals.language %>">
+  <%- include('../includes/head', { title: millimetr.globals.title, description: millimetr.globals.description }) %>
+
+  <body>
+    <div class="layout">
+
+      <main class="layout__content">
+        <div class="homepage">
+          <div class="homepage__column">
+
+            <hr class="homepage__divider">
+
+            <div class="homepage__section">
+              <%- include('../includes/title', { icon: 'hand', text: ['Hello', 'World!'] }) %>
+
+              <p class="homepage__section-blurb">
+                Hello
+              </p>
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <%- include('../includes/footer') %>
+    </div>
+  </body>
+</html>
