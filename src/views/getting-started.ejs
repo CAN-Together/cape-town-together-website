@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="<%= millimetr.globals.language %>">
+<%- include('../includes/head', { title: millimetr.globals.title, description: millimetr.globals.description }) %>
+
+<body>
+  <div class="layout">
+    <%- include('../includes/menu', { routes: millimetr.internals.routes.all, currentUrl: millimetr.internals.routes.active.url }) %>
+
+    <main class="layout__content">
+      <details>
+        <summary class="title">
+          <div class="title__icon">
+            <%- include('../includes/icon', { type: 'rocket' }) %>
+          </div>
+          <h3>
+            <span class="title__text">Starting a CAN</span>
+          </h3>
+        </summary>
+        <ul>
+          <li class="item__1jsNj"><a href="#getting-started" class="link__JFDdD">Getting Started</a></li>
+          <li class="item__1jsNj"><a href="#being-action-oriented" class="link__JFDdD">Being action-oriented</a></li>
+          <li class="item__1jsNj"><a href="#being-collaborative" class="link__JFDdD">Being collaborative</a></li>
+          <li class="item__1jsNj"><a href="#finding-consensus" class="link__JFDdD">Finding consensus</a></li>
+          <li class="item__1jsNj"><a href="#growing-your-can" class="link__JFDdD">Growing your CAN</a></li>
+          <li class="item__1jsNj"><a href="#being-inclusive" class="link__JFDdD">Being inclusive</a></li>
+          <li class="item__1jsNj"><a href="#being-a-guilt-free-zone" class="link__JFDdD">Being a guilt-free zone</a></li>
+          <li class="item__1jsNj"><a href="#building-solidarity" class="link__JFDdD">Building solidarity</a></li>
+          <li class="item__1jsNj"><a href="#keeping-your-can-safe" class="link__JFDdD">Keeping your CAN safe</a></li>
+          <li class="item__1jsNj"><a href="#keeping-your-can-healthy" class="link__JFDdD">Keeping your CAN healthy</a>
+          </li>
+          <li class="item__1jsNj"><a href="#building-resilience" class="link__JFDdD">Building resilience</a></li>
+          <li class="item__1jsNj"><a href="#strengthening-the-network" class="link__JFDdD">Strengthening the network</a>
+          </li>
+          <li class="item__1jsNj"><a href="#mapping-your-community" class="link__JFDdD">Mapping your community</a></li>
+          <li class="item__1jsNj"><a href="#spreading-trusted-information" class="link__JFDdD">Spreading trusted
+              information</a></li>
+          <li class="item__1jsNj"><a href="#caring-for-children" class="link__JFDdD">Caring for children</a></li>
+        </ul>
+      </details>
+    </main>
+
+    <%- include('../includes/footer') %>
+  </div>
+</body>
+
+</html>

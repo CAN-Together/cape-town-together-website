@@ -118,6 +118,11 @@ const createConfig = async () => ({
             title: 'Homepage',
             template: './src/views/homepage.ejs',
         },
+        {
+            url: '/getting-started',
+            title: 'Getting started',
+            template: './src/views/getting-started.ejs',
+        },
         ...(await getRoutes()).sort((a, b) => a.order - b.order)
     ],
 })
