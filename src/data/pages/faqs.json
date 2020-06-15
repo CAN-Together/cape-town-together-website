@@ -1,0 +1,17 @@
+{
+    "title": "FAQs",
+    "url": "/faqs",
+    "icon": "info",
+    "order": 3,
+    "body": "Hello World",
+    "expanding": [
+        {
+            "title": "one",
+            "content": "one"
+        },
+        {
+            "title": "two",
+            "content": "two"
+        }
+    ]
+}

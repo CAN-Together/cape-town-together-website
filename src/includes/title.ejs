@@ -1,7 +1,16 @@
+<%#
+    Properties:
+
+    - icon: string
+    - text: [string, string]
+%>
+
+
 <div class="title">
     <div class="title__icon"><%- include('../includes/icon', { type: icon }) %></div>
-    <h3>
+
+    <h<%= hierarchy %> class="title__wrapper">
       <span class="title__text"><%= text[0] %></span>
       <%- text.length > 1 ? `<span class="title__text title__text_highlight"> ${text[1]}</span>` : ''%>
-    </h3>
+    </h<%= hierarchy %>>
   </div>

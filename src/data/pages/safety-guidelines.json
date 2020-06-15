@@ -1,0 +1,17 @@
+{
+    "title": "Safey Guidelines",
+    "url": "/safety-guidelines",
+    "icon": "health",
+    "order": 2,
+    "body": "Hello World",
+    "expanding": [
+        {
+            "title": "one",
+            "content": "one"
+        },
+        {
+            "title": "two",
+            "content": "two"
+        }
+    ]
+}

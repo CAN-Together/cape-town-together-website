@@ -5,29 +5,97 @@
 
   <body>
     <div class="layout">
+      <div class="layout__overlay">123</div>
+      <%- include('../includes/menu', { routes: millimetr.internals.routes.all, currentUrl: millimetr.internals.routes.active.url }) %>
 
       <main class="layout__content">
         <div class="homepage">
+
+          <%# Hero %>
+
+          <div class="homepage__hero">
+            <div class="homepage__background">
+              <div class="homepage__fade">
+                <h1 class="homepage__banner">
+                  <span class="homepage__title">Cape Town </span>
+                  <span class="homepage__title homepage__title_highlight">Together</span>
+                </h1>
+              </div>
+            </div>
+
+            <p class="homepage__subtitle">CCT is a network of Community Action Networks responding to the Covid-19 crisis in South Africa.</p>
+          </div>
+
           <div class="homepage__column">
 
-            <hr class="homepage__divider">
+            <%# "Get involved" section %>
 
             <div class="homepage__section">
-              <%- include('../includes/title', { icon: 'hand', text: ['Hello', 'World!'] }) %>
+              <%- include('../includes/title', { icon: 'hand', text: ['Get', 'Involved'], hierarchy: 2 }) %>
 
               <ul class="homepage__list">
                 <li class="homepage__item">
-                  <%- include('../includes/button', { href: '#', label: 'Click me!', variant: 'default' }) %>
+                  <p class="homepage__blurb">Sign up now to join or start a Community Action Network.</p>
+                </li>
+
+                <li class="homepage__item">
+                  <%- include('../includes/button', { href: 'https://form.jotform.com/200813205437042', target: '_blank', label: 'Sign up now',  variant: 'default' }) %>
                 </li>
               </ul>
             </div>
 
+            <hr class="homepage__divider">
+
+            <%# "Find a CAN" section %>
+            
+            <div class="homepage__section">
+              <%- include('../includes/title', { icon: 'pin', text: ['Find a', 'CAN'], hierarchy: 2 }) %>
+
+              <ul class="homepage__list">
+                <li class="homepage__item">
+                  <div data-javascript="search" data-javascript-groups="<%= JSON.stringify(groups) %>"></div>
+                </li>
+
+                <li class="homepage__item">
+                  <%- include('../includes/button', { href: 'https://airtable.com/shrdUJhGEOiMVOr7q/tblUvcnqXzJTopscb/viwPz5HP6AlJMu5zQ', label: 'See a map of CANs', target: '_blank', variant: 'default' }) %>
+                </li>
+              </ul>
+            </div>
+
+            <hr class="homepage__divider">
+
+            <%# "Start Organising" section %>
+
+            <div class="homepage__section">
+              <%- include('../includes/title', { icon: 'rocket', text: ['Start', 'Organising'], hierarchy: 2 }) %>
+
+              <ul class="homepage__list">
+                <li class="homepage__item">
+                  <%- include('../includes/button', { href: '/starting-a-can', label: 'Getting started with your CAN', variant: 'default' }) %>
+                </li>
+              </ul>
+            </div>
+
+            <hr class="homepage__divider">
+
+            <%# "Join Our Group" section %>
+
+            <div class="homepage__section">
+              <%- include('../includes/title', { icon: 'rocket', text: ['Join Our', 'Group'], hierarchy: 2 }) %>
+
+              <ul class="homepage__list">
+                <li class="homepage__item">
+                  <p class="homepage__blurb">Our Facebook group is a place for city-wide conversations about local community issues.</p>
+                </li>
+
+                <li class="homepage__item">
+                  <%- include('../includes/button', { href: 'https://www.facebook.com/groups/CapeTownTogether/', label: 'Join our Facebook group', target: '_blank', variant: 'default' }) %>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </main>
-
-      <%- include('../includes/footer') %>
     </div>
   </body>
 </html>

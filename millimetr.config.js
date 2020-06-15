@@ -1,15 +1,98 @@
+require('dotenv').config()
+
 const { promises } = require('fs');
 const { resolve: resolvePath } = require('path');
 const markdownIt = require('markdown-it')();
-const frontMatter = require('front-matter');
+const axios = require('axios');
+const faker = require('faker');
 
 const CWD = process.cwd();
 const PAGES_PATH = './src/data/pages';
+
+
+faker.seed(1)
+
+/**
+ * Embedded constants
+ */
+
+const GROUPS_URL = `https://api.airtable.com/v0/app68ZSxKJJR3AoCB/Groups?api_key=${process.env.AIRTABLE_AUTH_TOKEN}`;
+
+const CLUSTERS = [
+    'Community Action Networks (A-H)',
+    'Community Action Networks (I-O)',
+    'Network Action Issues',
+    'Community Action Networks (P-Z)',
+]
 
 /*
  * Embedded helper functions
  */
 
+/**
+ * 
+ */
+const mockGroupsData = () => new Array(50).fill(undefined).map(() => ({
+  id: faker.random.uuid(),
+  createdTime: faker.date.past(),
+  fields: {
+    'Group Name': faker.commerce.productName(),
+    Recid: faker.lorem.slug(),
+    Cluster: faker.random.arrayElement(CLUSTERS),
+    'Link to Contact Group': faker.internet.url(),
+    'Last Modified Time': faker.date.recent(),
+    'Link to sign-up as volunteer': faker.internet.url(),
+  }
+}))
+
+/**
+ * 
+ */
+const transformGroupsData = (records) => {
+  console.log(records)
+
+  return records.map(({ fields }) => {
+    if (!fields["Group Name"] || !fields["Link to Contact Group"]) {
+      return null
+    }
+
+    return {
+      name: fields["Group Name"],
+      link: fields["Link to Contact Group"],
+    }
+  }).filter(val => !!val);
+}
+
+/**
+ * 
+ */
+const recursiveApiCall = async (records, callback, offset) => {
+  const URL = !offset ? GROUPS_URL : `${GROUPS_URL}&offset=${offset}`;
+
+  const { data } = await axios.get(URL);
+  data.records.forEach((item) => records.push(item))
+
+  if (data.offset) {
+    await callback(records, callback, data.offset)
+  }
+}
+
+/**
+ * 
+ */
+const getGroupsData = async () => {
+  if (!process.env.AIRTABLE_AUTH_TOKEN) {
+    return transformGroupsData(mockGroupsData());
+  }
+
+  let records = [];
+  await recursiveApiCall(records, recursiveApiCall, null);
+  return transformGroupsData(records);
+}
+
+/**
+ * 
+ */
 const getRoutes = async () => {
     const pagesPath = resolvePath(CWD, PAGES_PATH);
     const files = await promises.readdir(pagesPath);
@@ -17,18 +100,12 @@ const getRoutes = async () => {
     const array = files.map(async (file) => {
         const filePath = resolvePath(PAGES_PATH, file);
         const contentAsString = await promises.readFile(filePath, 'utf-8');
-
-        const { attributes, body } = frontMatter(contentAsString);
-
-        if (!attributes || !attributes.title) {
-            throw new Error('No title supplied');
-        }
+        const values = JSON.parse(contentAsString);
 
         return {
-            ...attributes,
-            url: attributes.url,
+            ...values,
             template: './src/views/page.ejs',
-            html: markdownIt.render(body),
+            html: markdownIt.render(values.body),
         }
     })
 
@@ -117,8 +194,9 @@ const createConfig = async () => ({
             url: '/',
             title: 'Homepage',
             template: './src/views/homepage.ejs',
+            groups: await getGroupsData(),
         },
-        ...(await getRoutes()).sort((a, b) => a.order - b.order)
+        ...(await getRoutes()).filter(({ order }) => order !== 0).sort((a, b) => a.order - b.order)
     ],
 })
 

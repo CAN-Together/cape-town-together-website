@@ -8,12 +8,20 @@
       <%- include('../includes/menu', { routes: millimetr.internals.routes.all, currentUrl: millimetr.internals.routes.active.url }) %>
 
       <main class="layout__content">
-        <h1><%= title %></h1>
+        <%- include('../includes/title', { icon: 'hand', text: [title], hierarchy: 1 }) %>
 
         <%- html %>
-      </main>
 
-      <%- include('../includes/footer') %>
+        <% expanding.forEach(({ title, name }) => { %>
+          <details class="page__expanding-section">
+            <summary class="page__expanding-preview">
+              <h3 class="page__expanding-title"><%= title %></h3>
+            </summary>
+
+            <p class="page__">1232</p>
+          </details>
+        <% }) %>
+      </main>
     </div>
   </body>
 </html>

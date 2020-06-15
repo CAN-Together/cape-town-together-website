@@ -1,0 +1,21 @@
+{
+    "title": "How we work",
+    "url": "/how-we-work",
+    "icon": "info",
+    "order": 1,
+    "body": "Hello World",
+    "expanding": [
+        {
+            "title": "one one one",
+            "content": "one"
+        },
+        {
+            "title": "two",
+            "content": "two"
+        },
+        {
+            "title": "three",
+            "content": "three"
+        }
+    ]
+}
