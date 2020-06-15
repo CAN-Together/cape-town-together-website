@@ -41,24 +41,23 @@ const SearchWidget = ({ groups, startingValue }) => {
   const searchResults = fuse.search(input).slice(0, 5).map(({ item: { name, link } }) => ({ name, link }));
 
   return html`
-      <form class="search" method="get" action="/results" autocomplete="off">
-        <div class="search__overlay ${active ? 'search__overlay_active' : ''}"></div>
+    <div class="search">
+      <div class="search__overlay ${active ? 'search__overlay_active' : ''}"></div>
 
-        <div class="search__content">
-          <div class="search__row">
-            <input value=${input} name="search" onInput=${handleSetInput} class="search__input" placeholder="search your area..." onFocus=${triggerFocus} onBlur=${triggerNoFocus} />
-            <button class="search__button" type="submit">Go</button>
-          </div>
-
-          <ul class="search__list ${active ? 'search__list_active' : ''}">
-            ${searchResults.map(({ name, link }) => html`
-              <li key=${name} class="search__item">
-                <a href=${link} target="_blank" class="search__link">${name}</a>
-              </li>
-            `)}
-          </ul>
+      <div class="search__content">
+        <div class="search__row">
+          <input value=${input} name="search" onInput=${handleSetInput} class="search__input" placeholder="search your area..." onFocus=${triggerFocus} onBlur=${triggerNoFocus} />
         </div>
-    </form>
+
+        <ul class="search__list ${active ? 'search__list_active' : ''}">
+          ${searchResults.map(({ name, link }) => html`
+            <li key=${name} class="search__item">
+              <a href=${link} target="_blank" class="search__link">${name}</a>
+            </li>
+          `)}
+        </ul>
+      </div>
+    </div>
   `
 }
 

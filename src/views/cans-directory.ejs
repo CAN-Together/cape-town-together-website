@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="<%= millimetr.globals.language %>">
+  <%- include('../includes/head', { title: millimetr.globals.title, description: millimetr.globals.description }) %>
+
+  <body>
+    <div class="layout">
+      <%- include('../includes/menu', { routes: millimetr.internals.routes.all, currentUrl: millimetr.internals.routes.active.url }) %>
+
+      <main class="layout__content">
+
+        <%- include('../includes/title', { icon: 'pin', text: ['CANs', 'Directory'], hierarchy: 1 }) %>
+
+        <div class="directory__search">
+          <div data-javascript="search" data-javascript-groups="<%= JSON.stringify(groups) %>"></div>
+        </div>
+
+        <ul class="directory__list">
+        <% groups.sort((a, b) => a.name < b.name ? -1 : 1).forEach(({ name, link }) => { %>
+          <li class="directory__item">
+            <%- include('../includes/button', { href: link, target: '_blank', label: name,  variant: 'default' }) %>
+          </li>
+        <% }) %>
+        </ul>
+
+      </main>
+    </div>
+  </body>
+</html>

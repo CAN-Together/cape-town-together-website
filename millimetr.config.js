@@ -48,18 +48,17 @@ const mockGroupsData = () => new Array(50).fill(undefined).map(() => ({
 /**
  * 
  */
-const transformGroupsData = (records) => {
-  return records.map(({ fields }) => {
-    if (!fields["Group Name"] || !fields["Link to Contact Group"]) {
-      return null
-    }
+const transformGroupsData = (records) => records.map(({ fields }) => {
+  if (!fields["Group Name"] || !fields["Link to Contact Group"]) {
+    return null
+  }
 
-    return {
-      name: fields["Group Name"],
-      link: fields["Link to Contact Group"],
-    }
-  }).filter(val => !!val);
-}
+  return {
+    name: fields["Group Name"],
+    link: fields["Link to Contact Group"],
+  }
+}).filter(val => !!val);
+
 
 /**
  * 
@@ -91,7 +90,7 @@ const getGroupsData = async () => {
 /**
  * 
  */
-const getRoutes = async () => {
+const getCmsRoutes = async () => {
     const pagesPath = resolvePath(CWD, PAGES_PATH);
     const files = await promises.readdir(pagesPath);
 
@@ -114,7 +113,11 @@ const getRoutes = async () => {
     return await Promise.all(array);
 }
 
-const createConfig = async () => ({
+const createConfig = async () => {
+  const groups = await getGroupsData();
+  const cmsRoutes = (await getCmsRoutes()).filter(({ order }) => order !== 0).sort((a, b) => a.order - b.order);
+
+  return {
     /**
      * Files that should be copied directly to build.
      *
@@ -177,42 +180,6 @@ const createConfig = async () => ({
         description: 'CCT is a network of Community Action Networks responding to the Covid-19 crisis in South Africa.'
     },
 
-    
-    /**
-     * In additional to the above millimetr also passes an `internals` object to
-     * all templates automatically. 
-     *
-     * These values can be accessed via `millimetr.internals` and are as
-     * follows:
-     *
-     * - `millimetr.internal.routes.all`: A list of all routes created by
-     *   millimeter. Is an array of objects that contain `url` and `title`
-     *   values. Useful for creating site navigation.
-     *
-     * - `millimetr.internal.routes.active`: The current route millimetr is
-     *   building. Is an object that contain an `url` and `title` value. This is
-     *   useful if you want to highlight the current active route via CSS.
-     *
-     * However, there are instances where you would want to modify these values
-     * before exposing them via the above. The following (optional) callback
-     * allows you to do this.
-     *
-     * The callback automatically passes the default `internals` object above to
-     * templates as it's first argument. The callback should consume these
-     * values, modify them as needed and then return the modified values.
-     *
-     * Note that if you want to prevent any internal values from being passed to
-     * the templates then simply have the callback return `null`. 
-     *
-     */
-    transformInternals: (internals) => ({
-      ...internals,
-      routes: {
-          ...internals.routes,
-          all: internals.routes.all.filter(({ url }) => url !== '/results'),
-      }
-  }),
-
     /**
      * This is where the majority of all millimetr logic sits.
      *
@@ -228,20 +195,21 @@ const createConfig = async () => ({
      * operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
      */
     routes: [
-        {
-            url: '/',
-            title: 'Homepage',
-            template: './src/views/homepage.ejs',
-            groups: await getGroupsData(),
-        },
-        {
-          url: '/results',
-          title: 'Search Results',
-          template: './src/views/results.ejs',
-          groups: await getGroupsData(),
+      {
+        url: '/',
+        title: 'Homepage',
+        template: './src/views/homepage.ejs',
+        groups,
       },
-        ...(await getRoutes()).filter(({ order }) => order !== 0).sort((a, b) => a.order - b.order)
+      {
+        url: '/cans-directory',
+        title: 'CANs Directory',
+        template: './src/views/cans-directory.ejs',
+        groups,
+      },
+      ...cmsRoutes,
     ],
-})
+  }
+}
 
 module.exports = createConfig;

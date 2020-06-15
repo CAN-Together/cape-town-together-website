@@ -52,7 +52,11 @@
 
               <ul class="homepage__list">
                 <li class="homepage__item">
-                  <div data-javascript="search" data-javascript-groups="<%= JSON.stringify(groups) %>"></div>
+                  <div class="homepage__search" data-javascript="search" data-javascript-groups="<%= JSON.stringify(groups) %>"></div>
+                </li>
+
+                <li class="homepage__item">
+                  <%- include('../includes/button', { href: '/cans-directory', label: 'Browse CANs', target: '_blank', variant: 'default' }) %>
                 </li>
 
                 <li class="homepage__item">
