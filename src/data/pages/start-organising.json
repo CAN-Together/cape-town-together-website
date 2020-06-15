@@ -1,17 +1,17 @@
 {
-    "title": "Start Organising",
-    "url": "/start-organising",
-    "icon": "rocket",
-    "order": 0,
-    "body": "Hello World",
-    "expanding": [
-        {
-            "title": "one",
-            "content": "one"
-        },
-        {
-            "title": "two",
-            "content": "two"
-        }
-    ]
+  "title": "Start Organising",
+  "url": "/start-organising",
+  "icon": "rocket",
+  "order": 0,
+  "body": ".",
+  "expanding": [
+    {
+      "title": "Being inclusive",
+      "content": "\n\nIt is important to be aware of the many reasons people do not or are not able to participate in initiatives and conversations. Sometimes it’s because of a lack of data or technology, sometimes because of language, sometimes because a voice is not valued.\n\nWe value a diversity of experiences and points of view. While recognising that some expressions of dominance are unconscious, unintended, or even well-meaning, and recognizing that we are all learning how to overcome our differences and be supportive of one another, we firmly reject all forms of domination or discrimination. \n\n* Commit to being generous and courageous in addressing issues of power and dominance as they emerge within your CAN.\n* Strive to be conscious at all times of the power inequalities that exist within your groups, to be aware of whose voices are being heard and whose voices are missed or excluded, and to actively make space and be inclusive.\n* Aim to include people from different races, religions and worldviews, that speak different languages, and have different income levels, education backgrounds, nationalities, gender orientations and sexualities. \n\nRecognise that everyone has something to contribute\n\n* Not everyone is a talker. Not everyone is good at writing. Not everyone is good at organising. Not everyone is good at administration.\n* Some of us are weavers and builders, others are storytellers, caregivers and healers. Some of us are disruptors and warriors, others are experimenters and guides but we all have gifts, skills and experience that we can contribute. \n* Encourage everyone to get involved, relish the diversity of what people have to offer, and recognise every contribution."
+    },
+    {
+      "title": "Building solidarity",
+      "content": "The COVID-19 pandemic will affect us all, but the most vulnerable will be worst affected, likely deepening the inequalities that have plagued Cape Town for years. However, by using the crisis as an opportunity to build solidarity across the city, we can help to shape the world that emerges on the other side of this crisis. This requires that we be open to personal growth and transformation through our common and disparate struggles, and that we challenge ourselves to be constantly learning about what it means to be in solidarity with each other in these times and always.\n\nWe value relationships of solidarity between and across all kinds of differences and privileges, including class, and race, gender and nationality.\n\nWhile all CANs should be community-led, and all CAN-activities community-driven, solidarity between CANs is important. Support other CANs wherever and whenever you can. This can mean financially or through food donations, but more often it means sharing your time, your emotional support, the lessons you have learnt and your informational resources with others."
+    }
+  ]
 }
