@@ -645,7 +645,7 @@ body {
   font-size: 1.5rem;
   font-weight: 500;
   padding: 1rem;
-  margin-left: -0.5rem;
+  margin-left: -1rem;
 }
 
 .page__expanding-preview::-webkit-details-marker {
@@ -660,6 +660,10 @@ body {
   display: inline-block;
   margin: 0;
   padding: 0;
+}
+
+.page__body {
+  padding: 1rem 0;
 }
 
 /*

@@ -3,8 +3,8 @@ backend:
   repo: CAN-Together/cape-town-together-website
 
 display_url: https://capetowntogether.net
-media_folder: src/static/media
-public_folder: /media
+media_folder: src/static/assets/images/cms
+public_folder: /assets/images/cms
 
 collections:
   - name: pages
@@ -42,8 +42,8 @@ collections:
         label: Content
         widget: markdown
 
-      - name: Expanding Sections
-        label: expanding
+      - name: expanding
+        label: Expanding Sections
         widget: list
         default: []
         fields:
