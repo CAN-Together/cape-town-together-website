@@ -8,7 +8,9 @@
       <%- include('../includes/menu', { routes: millimetr.internals.routes.all, currentUrl: millimetr.internals.routes.active.url }) %>
 
       <main class="layout__content">
-        123
+        <div data-javascript="search" data-javascript-groups="<%= JSON.stringify(groups) %>"></div>
+
+        <div data-javascript="results" data-javascript-groups="<%= JSON.stringify(groups) %>"></div>
       </main>
     </div>
   </body>
