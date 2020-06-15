@@ -2,7 +2,7 @@
     "title": "How we work",
     "url": "/how-we-work",
     "icon": "info",
-    "order": 1,
+    "order": 0,
     "body": "Hello World",
     "expanding": [
         {

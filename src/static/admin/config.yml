@@ -41,6 +41,7 @@ collections:
       - name: body
         label: Content
         widget: markdown
+        required: false
 
       - name: expanding
         label: Expanding Sections
@@ -51,7 +52,9 @@ collections:
           - name: title
             label: Title
             widget: string
+            default: ""
 
           - name: content
             label: Content
             widget: markdown
+            default: ""
