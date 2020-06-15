@@ -9,6 +9,7 @@ public_folder: /assets/images/cms
 collections:
   - name: pages
     label: Pages
+    label_singular: page
     folder: src/data/pages
     extension: json
     create: true
@@ -21,6 +22,7 @@ collections:
       - name: url
         label: URL
         widget: string
+        pattern: ['^\/.+', 'Must be relative to domain. (in other words it should start with an "/").']
 
       - name: icon
         label: Icon
@@ -37,6 +39,7 @@ collections:
       - name: order
         label: Order
         widget: number
+        comment: asdasd
 
       - name: body
         label: Content
@@ -45,6 +48,7 @@ collections:
 
       - name: expanding
         label: Expanding Sections
+        label_singular: expanding section
         widget: list
         default: []
         fields:

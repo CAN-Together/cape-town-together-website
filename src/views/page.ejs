@@ -8,19 +8,23 @@
       <%- include('../includes/menu', { routes: millimetr.internals.routes.all, currentUrl: millimetr.internals.routes.active.url }) %>
 
       <main class="layout__content">
-        <%- include('../includes/title', { icon: 'hand', text: [title], hierarchy: 1 }) %>
+        <div class="page">
+          <%- include('../includes/title', { icon: 'hand', text: [title], hierarchy: 1 }) %>
 
-        <%- html %>
+          <div class="page__body">
+            <%- html %>
+          </div>
 
-        <% expanding.forEach(({ title, name }) => { %>
-          <details class="page__expanding-section">
-            <summary class="page__expanding-preview">
-              <h3 class="page__expanding-title"><%= title %></h3>
-            </summary>
+          <% expanding.forEach(({ title, content }) => { %>
+            <details class="page__expanding-section">
+              <summary class="page__expanding-preview">
+                <h3 class="page__expanding-title"><%= title %></h3>
+              </summary>
 
-            <p class="page__">1232</p>
-          </details>
-        <% }) %>
+              <div class="page__body"><%- content %></div>
+            </details>
+          <% }) %>
+        </div>
       </main>
     </div>
   </body>

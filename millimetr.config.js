@@ -49,8 +49,6 @@ const mockGroupsData = () => new Array(50).fill(undefined).map(() => ({
  * 
  */
 const transformGroupsData = (records) => {
-  console.log(records)
-
   return records.map(({ fields }) => {
     if (!fields["Group Name"] || !fields["Link to Contact Group"]) {
       return null
@@ -106,6 +104,10 @@ const getRoutes = async () => {
             ...values,
             template: './src/views/page.ejs',
             html: markdownIt.render(values.body),
+            expanding: values.expanding.map((expandingItem) => ({ 
+              ...expandingItem, 
+              content: markdownIt.render(expandingItem.content) 
+            }))
         }
     })
 

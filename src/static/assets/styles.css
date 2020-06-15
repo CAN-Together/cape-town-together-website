@@ -70,13 +70,16 @@ body {
 .layout {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
   background: #fafafa;
 }
 
 .layout__content {
   flex-grow: 1;
   padding: 6rem 2rem 3rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 @media (min-width: 25rem) {
@@ -637,15 +640,16 @@ body {
  * page
  */
 
-.page__expanding-section {
-  cursor: pointer;
-}
+ .page {
+   padding-top: 2rem;
+ }
 
 .page__expanding-preview {
   font-size: 1.5rem;
   font-weight: 500;
   padding: 1rem;
   margin-left: -1rem;
+  cursor: pointer;
 }
 
 .page__expanding-preview::-webkit-details-marker {
@@ -664,6 +668,42 @@ body {
 
 .page__body {
   padding: 1rem 0;
+	font-family: Ubuntu, Cantarell, 'Open Sans', Arial, 'Helvetica Neue', sans-serif;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+
+.page__body h3 {
+	font-size: 1.5rem;
+}
+
+.page__body li {
+	font-size: 1rem;
+	line-height: 1.5;
+}
+
+.page__body hr {
+	border: 0 solid transparent;
+	border-bottom: 3px solid #B2D8CE;
+}
+
+.page__body a {
+	color: #419A7D;
+	display: inline-block;
+}
+
+.page__body a:hover {
+	background: #419A7D20;
+	border-radius: 2px;
+	margin: -2px -4px ;
+	padding: 2px 4px;
+}
+
+.page__body blockquote {
+	border-left: 6px solid  #B2D8CE;
+	margin-left: 0;
+	padding-left: 1rem;
+	display: inline-block;
 }
 
 /*
