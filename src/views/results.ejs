@@ -1,0 +1,15 @@
+<!doctype html>
+
+<html lang="<%= millimetr.globals.language %>">
+  <%- include('../includes/head', { title: millimetr.globals.title, description: millimetr.globals.description }) %>
+
+  <body>
+    <div class="layout">
+      <%- include('../includes/menu', { routes: millimetr.internals.routes.all, currentUrl: millimetr.internals.routes.active.url }) %>
+
+      <main class="layout__content">
+        123
+      </main>
+    </div>
+  </body>
+</html>

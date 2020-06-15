@@ -102,11 +102,14 @@ const initSearch = (search) => {
     const searchResults = formatResults(fuse.search(input));
 
     return html`
-        <div class="search">
+        <form class="search" method="get" action="/results">
           <div class="search__overlay ${active ? 'search__overlay_active' : ''}"></div>
 
           <div class="search__content">
-            <input value=${input} onInput=${handleSetInput} class="search__input" placeholder="search your area..." onFocus=${triggerFocus} onBlur=${triggerNoFocus} />
+            <div class="search__row">
+              <input value=${input} name="text" onInput=${handleSetInput} class="search__input" placeholder="search your area..." onFocus=${triggerFocus} onBlur=${triggerNoFocus} />
+              <button class="search__button" type="submit">Go</button>
+            </div>
 
             <ul class="search__list ${active ? 'search__list_active' : ''}">
               ${searchResults.map(({ name, link }) => html`
@@ -116,7 +119,7 @@ const initSearch = (search) => {
               `)}
             </ul>
           </div>
-        </div>
+      </form>
     `
   }
 

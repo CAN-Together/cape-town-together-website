@@ -18,15 +18,18 @@ collections:
       - name: title
         label: Title
         widget: string
+        hint: This is the text to be shown at the top of the page (as well as used when it is included in the menu)
 
       - name: url
         label: URL
         widget: string
         pattern: ['^\/.+', 'Must be relative to domain. (in other words it should start with an "/").']
+        hint: This is the URL where the page will be located. For example "/example" will be mapped to "https://capetowntogether.net/example".
 
       - name: icon
         label: Icon
         widget: select
+        hint: This the icon that will be used (from a pre-generated list of icons) next to the title at the top of the page
         options:
           - hand 
           - clipboard
@@ -39,16 +42,19 @@ collections:
       - name: order
         label: Order
         widget: number
-        comment: asdasd
+        default: 0
+        hint: If value is "0" then this page will not be listed in the website header menu. If another value it will be in the website header. The number assigned will determine the order in which page links appear in the menu. For example "1" will be ordered before "2" and other higher values. 
 
       - name: body
         label: Content
         widget: markdown
         required: false
+        hint: This field is for optional (but is recommended to be included) introductory text content that should be shown before the expanding sections. Make sure that is always set to "rich text".
 
       - name: expanding
-        label: Expanding Sections
-        label_singular: expanding section
+        label: Expandable Sections
+        label_singular: expandable section
+        hint: The following is a collection of expandable content areas that should go under the introduction content. Items can be added by pressing the "add expandable section" button and can be deleted by pressing the 'x' button on a specific section. Click on the ">" arrow to edit the details of associated with a specific expandable section.
         widget: list
         default: []
         fields:

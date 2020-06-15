@@ -177,6 +177,42 @@ const createConfig = async () => ({
         description: 'CCT is a network of Community Action Networks responding to the Covid-19 crisis in South Africa.'
     },
 
+    
+    /**
+     * In additional to the above millimetr also passes an `internals` object to
+     * all templates automatically. 
+     *
+     * These values can be accessed via `millimetr.internals` and are as
+     * follows:
+     *
+     * - `millimetr.internal.routes.all`: A list of all routes created by
+     *   millimeter. Is an array of objects that contain `url` and `title`
+     *   values. Useful for creating site navigation.
+     *
+     * - `millimetr.internal.routes.active`: The current route millimetr is
+     *   building. Is an object that contain an `url` and `title` value. This is
+     *   useful if you want to highlight the current active route via CSS.
+     *
+     * However, there are instances where you would want to modify these values
+     * before exposing them via the above. The following (optional) callback
+     * allows you to do this.
+     *
+     * The callback automatically passes the default `internals` object above to
+     * templates as it's first argument. The callback should consume these
+     * values, modify them as needed and then return the modified values.
+     *
+     * Note that if you want to prevent any internal values from being passed to
+     * the templates then simply have the callback return `null`. 
+     *
+     */
+    transformInternals: (internals) => ({
+      ...internals,
+      routes: {
+          ...internals.routes,
+          all: internals.routes.all.filter(({ url }) => url !== '/results'),
+      }
+  }),
+
     /**
      * This is where the majority of all millimetr logic sits.
      *
@@ -198,6 +234,12 @@ const createConfig = async () => ({
             template: './src/views/homepage.ejs',
             groups: await getGroupsData(),
         },
+        {
+          url: '/results',
+          title: 'Search Results',
+          template: './src/views/results.ejs',
+          groups: await getGroupsData(),
+      },
         ...(await getRoutes()).filter(({ order }) => order !== 0).sort((a, b) => a.order - b.order)
     ],
 })

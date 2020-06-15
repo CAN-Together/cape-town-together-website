@@ -1,5 +1,5 @@
 build
 node_modules
 .history
-/static/assets/scripts.js
 .env
+src/static/assets/scripts.js
