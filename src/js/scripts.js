@@ -28,8 +28,6 @@ const initMenu = (menuDropdown) => {
 const createFuse = (groups) => groups ? () => new Fuse(groups, { keys: ['name'], threshold: 0.2 }) : () => ({ search: () => []});
 
 const SearchWidget = ({ groups, startingValue }) => {
-  console.log(startingValue)
-
   const [input, setInput] = preactHooks.useState(startingValue || '');
   const [active, setActive] = preactHooks.useState(false);
 
@@ -42,11 +40,11 @@ const SearchWidget = ({ groups, startingValue }) => {
 
   return html`
     <div class="search">
-      <div class="search__overlay ${active ? 'search__overlay_active' : ''}"></div>
+      <div class="search__overlay ${active ? 'search__overlay_active' : ''}" onClick=${triggerNoFocus}></div>
 
       <div class="search__content">
         <div class="search__row">
-          <input value=${input} name="search" onInput=${handleSetInput} class="search__input" placeholder="search your area..." onFocus=${triggerFocus} onBlur=${triggerNoFocus} />
+          <input value=${input} name="search" onInput=${handleSetInput} class="search__input" placeholder="search your area..." onFocus=${triggerFocus} />
         </div>
 
         <ul class="search__list ${active ? 'search__list_active' : ''}">
@@ -70,9 +68,7 @@ const initSearch = (search) => {
   preact.render(html`<${SearchWidget} groups=${groups} startingValue=${urlParams.get('search') || ''} />`, search);
 }
 
-const initResults = () => {
-  console.log('adasd')
-}
+
 
 /**
  * Primary side-effect
@@ -80,8 +76,6 @@ const initResults = () => {
 
 const menuDropdown = document.querySelector('[data-javascript="menu__dropdown"]');
 const search = document.querySelector('[data-javascript="search"]');
-const results = document.querySelector('[data-javascript="results"]');
 
 if (menuDropdown) initMenu(menuDropdown);
 if (search) initSearch(search);
-if (results) initResults(results);
