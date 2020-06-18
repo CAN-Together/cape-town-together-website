@@ -7,6 +7,54 @@ media_folder: src/static/assets/images/cms
 public_folder: /assets/images/cms
 
 collections:
+  - name: general
+    label: General
+    extension: json
+    files: 
+      - name: homepage
+        label: Homepage
+        file: src/data/homepage.json
+        fields:
+          - name: sections
+            label: Sections
+            widget: list
+            default: []
+            fields:
+
+              - name: title
+                label: Title
+                widget: string
+
+              - name: icon
+                label: Icon
+                widget: select
+                options:
+                  - hand 
+                  - clipboard
+                  - shield
+                  - facebook
+                  - pin
+                  - rocket
+                  - info
+
+              - name: overview
+                label: Overview
+                widget: text
+
+              - name: buttons
+                label: Buttons
+                widget: list
+                default: []
+                fields:
+                  
+                  - name: label
+                    label: Label
+                    widget: string
+
+                  - name: url
+                    label: URL
+                    widget: string
+              
   - name: pages
     label: Pages
     label_singular: page

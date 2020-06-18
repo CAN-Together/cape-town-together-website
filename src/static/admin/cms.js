@@ -91,16 +91,16 @@ const PagePreview = createClass({
               }}
             />
 
-            ${widgetsFor('expanding').map((item) => html`
+            ${widgetsFor('expanding').map((expanding) => html`
               <details class="page__expanding-section">
                 <summary class="page__expanding-preview">
-                  <h3 class="page__expanding-title">${item.getIn(['data', 'title'])}</h3>
+                  <h3 class="page__expanding-title">${expanding.getIn(['data', 'title'])}</h3>
                 </summary>
 
                 <div
                   class="page__body" 
                   dangerouslySetInnerHTML=${{
-                    __html: markdownit().render(item.getIn(['data', 'content']))
+                    __html: markdownit().render(expanding.getIn(['data', 'content']))
                   }}
                 />
               </details>
@@ -112,6 +112,59 @@ const PagePreview = createClass({
   }
 });
 
-CMS.registerPreviewTemplate("pages", PagePreview);
+const HomepagePreview = createClass({
+  render() {
+    const { entry, widgetsFor } = this.props;
+    const { sections: bypassedImmutable } = entry.getIn(['data'] ).toJS();
 
+    return (
+      html`
+        <div class="Layout">
+          <main class="layout__content">
+            <div class="homepage">
+              ${bypassedImmutable.map((section) => html`
+                <${preact.Fragment}>
+                  <div class="homepage__section">
+                    <div class="title">
+                      ${section.icon && html`<div class="title__icon"><${Icon} type=${section.icon} /></div>`}
+
+                      <h2 class="title__wrapper">
+                        <span class="title__text">${section.title}</span>
+                      </h2>
+                    </div>
+
+                    <ul class="homepage__list">
+                      <li class="homepage__item">
+                        <p class="homepage__blurb">${section.overview}</p>
+                      </li>
+
+
+                      ${section.buttons.map((button) => html`
+                        <li class="homepage__item">
+                          <a class="button button_default" href=${button.url}>
+                            <span class="button__text">${button.label}</span>
+                            <span class="button__arrow"></span>
+
+                            <span class="button__ripple">
+                              <span class="button__circle"></span>
+                            </span>
+                          </a>
+                        </li>
+                      `)}       
+                    </ul>
+                  </div>
+
+                  <hr class="homepage__divider">
+                </${preact.Fragment}>
+              `)}
+            </div>
+          </main>
+        </div>
+      `
+    );
+  }
+});
+
+CMS.registerPreviewTemplate("pages", PagePreview);
+CMS.registerPreviewTemplate("homepage", HomepagePreview);
 
