@@ -620,6 +620,7 @@ body {
   border: 0 solid transparent;
   border-top: 5px solid #b2d8ce;
   margin: 0;
+  max-width: 750px;
 }
 
 .homepage__blurb {
