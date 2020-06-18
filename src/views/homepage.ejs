@@ -25,77 +25,34 @@
             <p class="homepage__subtitle">CCT is a network of Community Action Networks responding to the Covid-19 crisis in South Africa.</p>
           </div>
 
+          <%# Sections %>
 
-            <%# "Get involved" section %>
-
+          <% sections.forEach(({ title, icon, rocket, overview, type, buttons }) => { %>
             <div class="homepage__section">
-              <%- include('../includes/title', { icon: 'hand', text: ['Get', 'Involved'], hierarchy: 2 }) %>
+              <%- include('../includes/title', { icon, text: [title], hierarchy: 2 }) %>
 
               <ul class="homepage__list">
-                <li class="homepage__item">
-                  <p class="homepage__blurb">Sign up now to join or start a Community Action Network.</p>
-                </li>
+                <% if (overview !== '') { %>
+                  <li class="homepage__item">
+                    <p class="homepage__blurb">Sign up now to join or start a Community Action Network.</p>
+                  </li>
+                <% } %>
 
-                <li class="homepage__item">
-                  <%- include('../includes/button', { href: 'https://form.jotform.com/200813205437042', target: '_blank', label: 'Sign up now',  variant: 'default' }) %>
-                </li>
+                <% if (type === 'embedded') { %>
+                  <li class="homepage__item">
+                    <div class="homepage__search" data-javascript="search" data-javascript-groups="<%= JSON.stringify(groups) %>"></div>
+                  </li>
+                <% } %>
+  
+                <% buttons.forEach(({ label, url,newTab }) => { %>
+                  <li class="homepage__item">
+                    <%- include('../includes/button', { href: url, label, target: newTab ? '_blank' : '_self', variant: 'default' }) %>
+                  </li>
+                <% }); %>
               </ul>
             </div>
-
-            <hr class="homepage__divider">
-
-            <%# "Find a CAN" section %>
-            
-            <div class="homepage__section">
-              <%- include('../includes/title', { icon: 'pin', text: ['Find a', 'CAN'], hierarchy: 2 }) %>
-
-              <ul class="homepage__list">
-                <li class="homepage__item">
-                  <div class="homepage__search" data-javascript="search" data-javascript-groups="<%= JSON.stringify(groups) %>"></div>
-                </li>
-
-                <li class="homepage__item">
-                  <%- include('../includes/button', { href: '/cans-directory', label: 'Browse CANs', target: '_blank', variant: 'default' }) %>
-                </li>
-
-                <li class="homepage__item">
-                  <%- include('../includes/button', { href: 'https://airtable.com/shrdUJhGEOiMVOr7q/tblUvcnqXzJTopscb/viwPz5HP6AlJMu5zQ', label: 'See a map of CANs', target: '_blank', variant: 'default' }) %>
-                </li>
-              </ul>
-            </div>
-
-            <hr class="homepage__divider">
-
-            <%# "Start Organising" section %>
-
-            <div class="homepage__section">
-              <%- include('../includes/title', { icon: 'rocket', text: ['Start', 'Organising'], hierarchy: 2 }) %>
-
-              <ul class="homepage__list">
-                <li class="homepage__item">
-                  <%- include('../includes/button', { href: '/starting-a-can', label: 'Getting started with your CAN', variant: 'default' }) %>
-                </li>
-              </ul>
-            </div>
-
-            <hr class="homepage__divider">
-
-            <%# "Join Our Group" section %>
-
-            <div class="homepage__section">
-              <%- include('../includes/title', { icon: 'rocket', text: ['Join Our', 'Group'], hierarchy: 2 }) %>
-
-              <ul class="homepage__list">
-                <li class="homepage__item">
-                  <p class="homepage__blurb">Our Facebook group is a place for city-wide conversations about local community issues.</p>
-                </li>
-
-                <li class="homepage__item">
-                  <%- include('../includes/button', { href: 'https://www.facebook.com/groups/CapeTownTogether/', label: 'Join our Facebook group', target: '_blank', variant: 'default' }) %>
-                </li>
-              </ul>
-            </div>
-        </div>
+          <% }); %>
+        <div>
       </main>
     </div>
   </body>

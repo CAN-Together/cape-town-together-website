@@ -41,6 +41,14 @@ collections:
                 label: Overview
                 widget: text
 
+              - name: type
+                label: Type
+                widget: select
+                default: default
+                options:
+                  - default
+                  - can-search
+
               - name: buttons
                 label: Buttons
                 widget: list
@@ -54,6 +62,10 @@ collections:
                   - name: url
                     label: URL
                     widget: string
+
+                  - name: newTab
+                    label: Opens new window
+                    widget: boolean
               
   - name: pages
     label: Pages

@@ -5,12 +5,11 @@ const { resolve: resolvePath } = require('path');
 const markdownIt = require('markdown-it')();
 const axios = require('axios');
 const faker = require('faker');
+const { sections } = require('./src/data/homepage.json');
 
 const CWD = process.cwd();
 const PAGES_PATH = './src/data/pages';
 
-
-faker.seed(1)
 
 /**
  * Embedded constants
@@ -199,6 +198,7 @@ const createConfig = async () => {
         url: '/',
         title: 'Homepage',
         template: './src/views/homepage.ejs',
+        sections,
         groups,
       },
       {
