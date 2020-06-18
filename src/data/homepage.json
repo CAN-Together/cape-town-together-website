@@ -1,20 +1,52 @@
 {
     "sections": [
         {
-            "title": "Hello World!",
+            "title": "Get Involved",
             "icon": "hand",
-            "overview": "12312",
+            "overview": "Sign up now to join or start a Community Action Network.",
             "buttons": [
                 {
-                    "label": "asdas",
-                    "url": "asdasd"
+                    "label": "Sign up now",
+                    "url": "https://form.jotform.com/200813205437042"
+                }
+            ]
+        },
+        {
+            "title": "Find a CAN",
+            "icon": "pin",
+            "overview": "",
+            "buttons": [
+                {
+                    "label": "Browse CANs",
+                    "url": "/cans-directory"
                 },
                 {
-                    "label": "asdas",
-                    "url": "asdasd"
+                    "label": "See a map of CANs",
+                    "url": "https://airtable.com/shrdUJhGEOiMVOr7q/tblUvcnqXzJTopscb/viwPz5HP6AlJMu5zQ"
+                }
+            ]
+        },
+        {
+            "title": "Start Organising",
+            "icon": "rocket",
+            "overview": "",
+            "buttons": [
+                {
+                    "label": "Get started with your CAN",
+                    "url": "/start-organising"
+                }
+            ]
+        },
+        {
+            "title": "Join Our Group",
+            "icon": "facebook",
+            "overview": "",
+            "buttons": [
+                {
+                    "label": "Join our Facebook group",
+                    "url": "https://www.facebook.com/groups/CapeTownTogether"
                 }
             ]
         }
-        
     ]
 }
