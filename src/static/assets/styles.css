@@ -564,6 +564,7 @@ body {
   bottom: 30px;
   margin: -40px -50px;
   width: 100%;
+  padding-bottom: 2rem;
 }
 
 .homepage__background {
@@ -636,6 +637,7 @@ body {
   font-weight: 500;
   margin-left: 50px;
   padding-right: 50px;
+  max-width: 37.5rem;
 }
 
 .homepage__list {

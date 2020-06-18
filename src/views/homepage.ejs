@@ -28,6 +28,8 @@
           <%# Sections %>
 
           <% sections.forEach(({ title, icon, rocket, overview, type, buttons }) => { %>
+            <hr class="homepage__divider">
+
             <div class="homepage__section">
               <%- include('../includes/title', { icon, text: [title], hierarchy: 2 }) %>
 
@@ -38,7 +40,7 @@
                   </li>
                 <% } %>
 
-                <% if (type === 'embedded') { %>
+                <% if (type === 'embedded-search') { %>
                   <li class="homepage__item">
                     <div class="homepage__search" data-javascript="search" data-javascript-groups="<%= JSON.stringify(groups) %>"></div>
                   </li>
