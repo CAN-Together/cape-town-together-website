@@ -19,14 +19,17 @@ collections:
             label: Sections
             widget: list
             default: []
+            hint: A collection of sections that contain buttons
             fields:
 
               - name: title
                 label: Title
+                hint: The title to show next to the icon for a specific section
                 widget: string
 
               - name: icon
                 label: Icon
+                hint: The specific icon that should be used for a section
                 widget: select
                 options:
                   - hand 
@@ -39,18 +42,21 @@ collections:
 
               - name: overview
                 label: Overview
+                hint: An optional sentence/paragraph that is show before buttons and/or widgets.
                 widget: text
 
               - name: type
                 label: Type
                 widget: select
                 default: default
+                hint: The type of section that should be used. All sections should be "default", with the exception of a single section that should be set to "embedded-search". The latter adds a widget above the buttons in a specified section that allows searching for a specific CAN. (Note that this will not reflect in the preview in the dashboard, but will be included in the actual site)
                 options:
                   - default
-                  - can-search
+                  - embedded-search
 
               - name: buttons
                 label: Buttons
+                hint: A collection of buttons (or a single button) that should be added to a section.
                 widget: list
                 default: []
                 fields:
@@ -58,14 +64,18 @@ collections:
                   - name: label
                     label: Label
                     widget: string
+                    hint: The text to be displayed inside the button.
 
                   - name: url
                     label: URL
                     widget: string
+                    hint: This is the link that users will be directed to when clicking the button.
 
                   - name: newTab
                     label: Opens new window
+                    default: false
                     widget: boolean
+                    hint: By default this is set to "false". However if you want a new window/tab to be opened in the browser when the link is clicked this can be set to true. It is recommended that this be set to true for links that navigate away from the capetowntogether.net website.
               
   - name: pages
     label: Pages
