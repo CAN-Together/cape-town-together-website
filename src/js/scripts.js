@@ -11,10 +11,10 @@ const html = htm.bind(preact.h);
  * @param {HTMLElement} menuDropdown 
  */
 const initMenu = (menuDropdown) => {
-  menuDropdown.classList.remove('menu__dropdown_loading')
+  menuDropdown.classList.remove('dropdown_loading')
 
   const changePage = ({ target }) => {
-      menuDropdown.classList.add('menu__dropdown_loading')
+      menuDropdown.classList.add('dropdown_loading')
       window.location.href = target.value;
   }
 
@@ -62,20 +62,29 @@ const SearchWidget = ({ groups, startingValue }) => {
 /**
  * @param {HTMLElement} search 
  */
+const initJs = (search) => {
+  const groups = JSON.parse(search.getAttribute('data-javascript-groups'));
+  const urlParams = new URLSearchParams(window.location.search);
+  preact.render(html`<${SearchWidget} groups=${groups} startingValue=${urlParams.get('search') || ''} />`, search);
+}
+
+/**
+ * @param {HTMLElement} search 
+ */
 const initSearch = (search) => {
   const groups = JSON.parse(search.getAttribute('data-javascript-groups'));
   const urlParams = new URLSearchParams(window.location.search);
   preact.render(html`<${SearchWidget} groups=${groups} startingValue=${urlParams.get('search') || ''} />`, search);
 }
 
-
-
 /**
  * Primary side-effect
  */
 
-const menuDropdown = document.querySelector('[data-javascript="menu__dropdown"]');
+const resourceItems = document.querySelectorAll('[data-javascript="resources-item"]');
+const menuDropdown = document.querySelector('[data-javascript="menu-dropdown"]');
 const search = document.querySelector('[data-javascript="search"]');
 
+if (resourceItems) initResources(resourceItems)
 if (menuDropdown) initMenu(menuDropdown);
 if (search) initSearch(search);

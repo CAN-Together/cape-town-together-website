@@ -16,6 +16,27 @@ const PAGES_PATH = './src/data/pages';
  */
 
 const GROUPS_URL = `https://api.airtable.com/v0/app68ZSxKJJR3AoCB/Groups?api_key=${process.env.AIRTABLE_AUTH_TOKEN}`;
+const RESOURCES_URL = `https://api.airtable.com/v0/applihLcZN4vyf2Vq/Resource%20Library?api_key=${process.env.AIRTABLE_AUTH_TOKEN}`;
+
+const MIME_DISPLAY_MAP = {
+  'application/pdf': 'PDF document',
+  'video/mp4': 'Video material',
+  'text/html': 'Video material',
+  'image/jpeg': 'Graphic image',
+  'image/jpg': 'Graphic image',
+  'image/png': 'Graphic image',
+  'image/gif': 'Graphic image',
+  'audio/x-m4a': 'Audio file',
+  'text/plain': 'Text document',
+}
+
+const DISPLAY_ORDER_MAP = {
+  'PDF document': 0,
+  'Graphic image': 1,
+  'Video material': 2,
+  'Audio file': 3,
+  'Text document': 4,
+}
 
 const CLUSTERS = [
     'Community Action Networks (A-H)',
@@ -47,6 +68,47 @@ const mockGroupsData = () => new Array(50).fill(undefined).map(() => ({
 /**
  * 
  */
+const mockResourcesData = () => new Array(50).fill(undefined).map(() => ({
+  id: faker.random.uuid(),
+  createdTime: faker.date.past(),
+  fields: {
+    Website: faker.random.boolean(),
+    Name: faker.commerce.productName(),
+    Category: faker.commerce.department(),
+    Type: faker.commerce.department(),
+    Link: faker.internet.url(),
+    fileId: faker.random.uuid(),
+    'Date Created': faker.date.past(),
+    'Date Updated': faker.date.recent(),
+    'File Name': faker.system.fileName(),
+    'Sub Type': faker.hacker.noun(),
+    File: [
+      {
+        id: faker.random.uuid(),
+        url: faker.internet.url(),
+        filename: faker.system.fileName(),
+        size: faker.random.number(1000),
+        type: faker.system.mimeType(),
+        thumbnails: faker.random.boolean() ? undefined : {
+          small: {
+            url: `https://picsum.photos/id/${faker.random.number({ min: 1, max: 300 })}/50/40`,
+            width: 50,
+            height: 40,
+          },
+          large: {
+            url: `https://picsum.photos/id/${faker.random.number({ min: 1, max: 300 })}/500/400`,
+            width: 500,
+            height: 400,
+          }
+        }
+      }
+    ]
+  }
+}))
+
+/**
+ * 
+ */
 const transformGroupsData = (records) => records.map(({ fields }) => {
   if (!fields["Group Name"] || !fields["Link to Contact Group"]) {
     return null
@@ -58,18 +120,36 @@ const transformGroupsData = (records) => records.map(({ fields }) => {
   }
 }).filter(val => !!val);
 
+/**
+ * 
+ */
+const transformResourcesData = (records) => records.map(({ fields }) => {
+  if (!fields.Website || !fields.File) {
+    return null
+  }
+
+  return {
+    title: fields.Name,
+    format: MIME_DISPLAY_MAP[fields.File[0].type] || '',
+    preview: fields.File[0].thumbnails && fields.File[0].thumbnails.large.url,
+    type: fields.Type,
+    subType: fields['Sub Type'],
+    url: fields.Link,
+  }
+}).filter(val => !!val).sort((a, b) => DISPLAY_ORDER_MAP[a.format] - DISPLAY_ORDER_MAP[b.format]);
+
 
 /**
  * 
  */
-const recursiveApiCall = async (records, callback, offset) => {
-  const URL = !offset ? GROUPS_URL : `${GROUPS_URL}&offset=${offset}`;
+const recursiveApiCall = async (records, callback, offset, url) => {
+  const urlWithOffset = !offset ? url : `${url}&offset=${offset}`;
 
-  const { data } = await axios.get(URL);
+  const { data } = await axios.get(urlWithOffset);
   data.records.forEach((item) => records.push(item))
 
   if (data.offset) {
-    await callback(records, callback, data.offset)
+    await callback(records, callback, data.offset, url)
   }
 }
 
@@ -82,8 +162,21 @@ const getGroupsData = async () => {
   }
 
   let records = [];
-  await recursiveApiCall(records, recursiveApiCall, null);
+  await recursiveApiCall(records, recursiveApiCall, null, GROUPS_URL);
   return transformGroupsData(records);
+}
+
+/**
+ * 
+ */
+const getResourcesData = async () => {
+  if (!process.env.AIRTABLE_AUTH_TOKEN) {
+    return transformResourcesData(mockResourcesData());
+  }
+
+  let records = [];
+  await recursiveApiCall(records, recursiveApiCall, null, RESOURCES_URL);
+  return transformResourcesData(records);
 }
 
 /**
@@ -112,9 +205,20 @@ const getCmsRoutes = async () => {
     return await Promise.all(array);
 }
 
+
+const dedupeArray = (array) => Object.keys(array.reduce((result, value) => ({
+  ...result,
+  [value]: null,
+}), {}))
+
 const createConfig = async () => {
   const groups = await getGroupsData();
+  const resources = await getResourcesData();
   const cmsRoutes = (await getCmsRoutes()).filter(({ order }) => order !== 0).sort((a, b) => a.order - b.order);
+
+  const resourceTypes = dedupeArray(resources.map(({ type }) => type)).sort();
+  const resourceSubTypes = dedupeArray(resources.map(({ subType }) => subType)).sort();
+  const resourceFormats = dedupeArray(resources.map(({ format }) => format)).sort();
 
   return {
     /**
@@ -200,6 +304,15 @@ const createConfig = async () => {
         template: './src/views/homepage.ejs',
         sections,
         groups,
+      },
+      {
+        url: '/resources',
+        title: 'Resources',
+        template: './src/views/resources.ejs',
+        resources,
+        types: resourceTypes,
+        subTypes: resourceSubTypes,
+        formats: resourceFormats,
       },
       {
         url: '/cans-directory',

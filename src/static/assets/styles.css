@@ -64,6 +64,46 @@ body {
 }
 
 /*
+ * dropdown
+ */
+
+.dropdown {
+  padding: 0.75rem 0.5rem;
+  border: 2px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #419a7d;
+  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  font-weight: 600;
+  width: 100%;
+
+  box-shadow: 
+    rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
+    rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, 
+    rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+}
+
+.dropdown:hover {
+  background: #b2d8ce;
+
+  box-shadow: 
+    rgba(0, 0, 0, 0.2) 0px 3px 3px -2px,
+    rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, 
+    rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
+}
+
+.dropdown:active,
+.dropdown:focus {
+  background: white;
+}
+
+.dropdown_loading {
+  color: transparent;
+  border: 2px solid #CCC;
+  cursor: not-allowed;
+}
+
+/*
  * layout
  */
 
@@ -127,7 +167,6 @@ body {
   .menu__content {
     padding: 0 3rem;
   }
-  
 }
 
 .menu__button {
@@ -196,45 +235,12 @@ body {
 
 .menu__dropdown {
   padding: 0.75rem 0.5rem;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  border: 2px solid black;
-  cursor: pointer;
-  border-radius: 5px;
-  border: 2px solid #419a7d;
-  font-family: Roboto, Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  width: 100%;
-
-  box-shadow: 
-    rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
-    rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, 
-    rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
 }
 
 @media (min-width: 65rem) {
   .menu__dropdown {
     display: none;
   }
-}
-
-.menu__dropdown:hover {
-  background: #b2d8ce;
-
-  box-shadow: 
-    rgba(0, 0, 0, 0.2) 0px 3px 3px -2px,
-    rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, 
-    rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
-}
-
-.menu__dropdown:active,
-.menu__dropdown:focus {
-  background: white;
-}
-
-.menu__dropdown_loading {
-  color: transparent;
-  border: 2px solid #CCC;
-  cursor: not-allowed;
 }
 
 .menu__list {
@@ -310,7 +316,7 @@ body {
 }
 
 .search__button {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   background: #ffffff;
   align-items: center;
   color: #212121;
@@ -338,7 +344,7 @@ body {
 }
 
 .search__input {
-  font-family: Ubuntu;
+  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   border: 2px solid #b2d8ce;
   border-radius: 5px;
   padding: 16px 8px;
@@ -371,7 +377,7 @@ body {
 }
 
 .search__link {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   width: 100%;
   align-items: flex-end;
   background: #ffffff;
@@ -401,7 +407,7 @@ body {
  */
 
  .button {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   border: 0 solid transparent;
   width: 100%;
   align-items: flex-end;
@@ -904,4 +910,67 @@ body {
 
 .directory__item {
   padding: 0.5rem;
+}
+
+/*
+ * resources
+ */
+
+ .resources__list {
+  list-style: none;
+  margin: 0;
+  padding: 3rem 0 0;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: -0.5rem;
+}
+
+.resources__item {
+  padding: 0;
+  width: 50%;
+  padding: 0.5rem;
+}
+
+.resources__title {
+  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  padding-bottom: 0.5rem;
+  word-break: break-word;
+}
+
+.resources__preview {
+  width: 100px;
+}
+
+.resources__info {
+  width: 100%;
+}
+
+.resources__value {
+  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ADADAD;
+}
+
+.resources__link {
+  text-decoration: none;
+  display: block;
+  padding: 1rem 0.5rem 1rem 0.25rem;
+  border-radius: 4px;
+  color: #212121;
+  display: flex;
+  align-content: center;
+}
+
+.resources__image {
+  width: 90%;
+}
+
+.resources__link:hover {
+  background: #419a7d30;
 }

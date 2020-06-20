@@ -805,10 +805,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@millimetr/cli@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@millimetr/cli/-/cli-1.1.4.tgz#1068abc0af7822de614e246bc65b2f3d0186d354"
-  integrity sha512-qBmsBiQigJODb4PjS6lSoPbJa05yVpLgFkhagrIjFKcCLeYm2uYoD+Mg1Uobu+/G1TKFOAzuyCBa2YXCwn0mJQ==
+"@millimetr/cli@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@millimetr/cli/-/cli-1.1.5.tgz#8bd88473ac04f78d7f1c04e61b38440e1063c6d0"
+  integrity sha512-fDguftAGorG4AQjWs05k05mRlwTlUdy+vqqdL6YVxXCewZBn+QTRDyLunTuE4j+Yhw9qqKDRXLjPpPpbG7mtFQ==
   dependencies:
     browser-sync "^2.26.7"
     chalk "^4.0.0"

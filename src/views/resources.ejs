@@ -1,0 +1,42 @@
+<!doctype html>
+
+<html lang="<%= millimetr.globals.language %>">
+  <%- include('../includes/head', { title: millimetr.globals.title, description: millimetr.globals.description }) %>
+
+  <body>
+    <div class="layout">
+      <%- include('../includes/menu', { routes: millimetr.internals.routes.all, currentUrl: millimetr.internals.routes.active.url }) %>
+
+      <main class="layout__content">
+        <%- include('../includes/title', { icon: 'hand', text: ['Resources'], hierarchy: 1 }) %>
+
+        <div class="resources">
+          <div class="resources__controls" data-javascript="resources-controls"></div>
+          <ul class="resources__list">
+            <% resources.forEach(({ title, format, type, subType, url, preview }) => { %>
+              <li class="resources__item">
+                <a class="resources__link" href="<%= url %>" target="_blank">
+                  <div class="resources__preview">
+                    <% if (preview) { %>
+                      <img class="resources__image" src="<%= preview %>"></img>
+                    <% } %>
+
+                    <% if (!preview) { %>
+                      <%- include('../includes/icon', { type: 'info' }) %>
+                    <% } %>
+                  </div>
+                  <div class="resources__info" data-javascript="resources-item">
+                    <div class="resources__title"><%= title %></div>
+                    <div class="resources__value"><%= type %></div>
+                    <div class="resources__value"><%= subType %></div>
+                    <div class="resources__value"><%= format %></div>
+                  </div>
+                </a>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

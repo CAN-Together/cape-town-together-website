@@ -17,14 +17,16 @@
       <%# Menu items %>
 
       <nav class="menu__nav">
-        <select class="menu__dropdown menu__dropdown_loading" data-javascript="menu__dropdown">
-          <%- !!routes.find(({ url }) => url === currentUrl) ? '' : '<option disabled selected>Navigate to:</option>'%>
-          <% routes.forEach(({ url, title }) => { %>
-            <option value="<%= url %>" <%= url === currentUrl ? 'selected' : '' %>>
-                <%= title %>
-            </option>
-          <% }); %>
-        </select>
+        <div class="menu__dropdown">
+          <select class="dropdown dropdown_loading" data-javascript="menu-dropdown">
+            <%- !!routes.find(({ url }) => url === currentUrl) ? '' : '<option disabled selected>Navigate to:</option>'%>
+            <% routes.forEach(({ url, title }) => { %>
+              <option value="<%= url %>" <%= url === currentUrl ? 'selected' : '' %>>
+                  <%= title %>
+              </option>
+            <% }); %>
+          </select>
+        </div>
 
         <ul class="menu__list">
           <% routes.forEach(({ url, title }) => { %>

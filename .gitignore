@@ -2,4 +2,5 @@ build
 node_modules
 .history
 .env
+.temp
 src/static/assets/scripts.js

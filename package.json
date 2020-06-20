@@ -3,7 +3,7 @@
   "license": "MIT",
   "scripts": {
     "js:build": "babel src/js/**/*.js --out-dir src/static/assets",
-    "js:start": "babel src/js/**/*.js --out-dir src/static/assets --watch",
+    "js:start": "babel src/js/**/*.js --out-dir .temp/assets --watch",
     "millimetr:build": "millimetr build",
     "millimetr:start": "millimetr develop",
     "build": "npm run js:build && npm run millimetr:build",
@@ -13,7 +13,7 @@
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
-    "@millimetr/cli": "^1.1.4",
+    "@millimetr/cli": "^1.1.5",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "faker": "^4.1.0",
