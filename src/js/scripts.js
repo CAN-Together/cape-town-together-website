@@ -81,10 +81,8 @@ const initSearch = (search) => {
  * Primary side-effect
  */
 
-const resourceItems = document.querySelectorAll('[data-javascript="resources-item"]');
 const menuDropdown = document.querySelector('[data-javascript="menu-dropdown"]');
 const search = document.querySelector('[data-javascript="search"]');
 
-if (resourceItems) initResources(resourceItems)
 if (menuDropdown) initMenu(menuDropdown);
 if (search) initSearch(search);

@@ -11,7 +11,7 @@
         <%- include('../includes/title', { icon: 'hand', text: ['Resources'], hierarchy: 1 }) %>
 
         <div class="resources">
-          <div class="resources__controls" data-javascript="resources-controls"></div>
+          <div class="resources__controls"></div>
           <ul class="resources__list">
             <% resources.forEach(({ title, format, type, subType, url, preview }) => { %>
               <li class="resources__item">
@@ -25,7 +25,7 @@
                       <%- include('../includes/icon', { type: 'info' }) %>
                     <% } %>
                   </div>
-                  <div class="resources__info" data-javascript="resources-item">
+                  <div class="resources__info">
                     <div class="resources__title"><%= title %></div>
                     <div class="resources__value"><%= type %></div>
                     <div class="resources__value"><%= subType %></div>

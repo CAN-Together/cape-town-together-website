@@ -916,7 +916,7 @@ body {
  * resources
  */
 
- .resources__list {
+.resources__list {
   list-style: none;
   margin: 0;
   padding: 3rem 0 0;
@@ -928,8 +928,13 @@ body {
 
 .resources__item {
   padding: 0;
-  width: 50%;
   padding: 0.5rem;
+}
+
+@media (min-width: 1000px) {
+  .resources__item {
+    width: 50%;
+  }
 }
 
 .resources__title {
