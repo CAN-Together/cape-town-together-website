@@ -45,19 +45,6 @@
       ]
     },
     {
-      "title": "Join Our Group",
-      "icon": "facebook",
-      "overview": " ",
-      "type": "default",
-      "buttons": [
-        {
-          "label": "Join our Facebook group",
-          "url": "https://www.facebook.com/groups/CapeTownTogether",
-          "newTab": true
-        }
-      ]
-    },
-    {
       "type": "default",
       "buttons": [
         {
@@ -69,6 +56,32 @@
       "title": "Staying Safe",
       "icon": "shield",
       "overview": " "
+    },
+    {
+      "type": "default",
+      "buttons": [
+        {
+          "newTab": false,
+          "label": "Posters, videos & other resources",
+          "url": "https://capetowntogether.net/resources/"
+        }
+      ],
+      "title": "Find Resources",
+      "icon": "info",
+      "overview": " "
+    },
+    {
+      "title": "Join Our Group",
+      "icon": "facebook",
+      "overview": " ",
+      "type": "default",
+      "buttons": [
+        {
+          "label": "Join our Facebook group",
+          "url": "https://www.facebook.com/groups/CapeTownTogether",
+          "newTab": true
+        }
+      ]
     }
   ]
 }
