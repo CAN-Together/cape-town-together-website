@@ -3,7 +3,7 @@
     {
       "title": "Get Involved",
       "icon": "hand",
-      "overview": " ",
+      "overview": "Start or join a Community Action Network",
       "type": "default",
       "buttons": [
         {
@@ -16,7 +16,7 @@
     {
       "title": "Find a CAN",
       "icon": "pin",
-      "overview": "  ",
+      "overview": " ",
       "type": "embedded-search",
       "buttons": [
         {
@@ -68,7 +68,7 @@
       ],
       "title": "Find Resources",
       "icon": "clipboard",
-      "overview": " "
+      "overview": "  "
     },
     {
       "type": "default",
@@ -86,7 +86,7 @@
     {
       "title": "Join us online",
       "icon": "facebook",
-      "overview": "  ",
+      "overview": " ",
       "type": "default",
       "buttons": [
         {
