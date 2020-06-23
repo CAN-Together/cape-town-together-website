@@ -77,6 +77,11 @@
           "newTab": false,
           "label": "How we work",
           "url": "https://capetowntogether.net/about-ctt/"
+        },
+        {
+          "newTab": false,
+          "label": "Get in touch",
+          "url": "capetowntogether.net/get-in-touch"
         }
       ],
       "title": "About Cape Town Together",
