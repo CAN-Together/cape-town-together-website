@@ -3,7 +3,7 @@
     {
       "title": "Get Involved",
       "icon": "hand",
-      "overview": "Sign up now to join or start a Community Action Network.",
+      "overview": " ",
       "type": "default",
       "buttons": [
         {
@@ -16,7 +16,7 @@
     {
       "title": "Find a CAN",
       "icon": "pin",
-      "overview": " ",
+      "overview": "  ",
       "type": "embedded-search",
       "buttons": [
         {
