@@ -67,13 +67,26 @@
         }
       ],
       "title": "Find Resources",
+      "icon": "clipboard",
+      "overview": " "
+    },
+    {
+      "type": "default",
+      "buttons": [
+        {
+          "newTab": false,
+          "label": "How we work",
+          "url": "https://capetowntogether.net/about-ctt/"
+        }
+      ],
+      "title": "About Cape Town Together",
       "icon": "info",
       "overview": " "
     },
     {
-      "title": "Join Our Group",
+      "title": "Join us online",
       "icon": "facebook",
-      "overview": " ",
+      "overview": "  ",
       "type": "default",
       "buttons": [
         {
