@@ -44,6 +44,7 @@ collections:
                 label: Overview
                 hint: An optional sentence/paragraph that is show before buttons and/or widgets.
                 widget: text
+                required: false
 
               - name: type
                 label: Type
