@@ -49,9 +49,6 @@ const CLUSTERS = [
  * Embedded helper functions
  */
 
-/**
- * 
- */
 const mockGroupsData = () => new Array(50).fill(undefined).map(() => ({
   id: faker.random.uuid(),
   createdTime: faker.date.past(),
@@ -65,9 +62,6 @@ const mockGroupsData = () => new Array(50).fill(undefined).map(() => ({
   }
 }))
 
-/**
- * 
- */
 const mockResourcesData = () => new Array(50).fill(undefined).map(() => ({
   id: faker.random.uuid(),
   createdTime: faker.date.past(),
@@ -106,9 +100,6 @@ const mockResourcesData = () => new Array(50).fill(undefined).map(() => ({
   }
 }))
 
-/**
- * 
- */
 const transformGroupsData = (records) => records.map(({ fields }) => {
   if (!fields["Group Name"] || !fields["Link to Contact Group"]) {
     return null
@@ -120,9 +111,6 @@ const transformGroupsData = (records) => records.map(({ fields }) => {
   }
 }).filter(val => !!val);
 
-/**
- * 
- */
 const transformResourcesData = (records) => records.map(({ fields }) => {
   if (!fields.Website || !fields.File) {
     return null
@@ -138,10 +126,6 @@ const transformResourcesData = (records) => records.map(({ fields }) => {
   }
 }).filter(val => !!val).sort((a, b) => DISPLAY_ORDER_MAP[a.format] - DISPLAY_ORDER_MAP[b.format]);
 
-
-/**
- * 
- */
 const recursiveApiCall = async (records, callback, offset, url) => {
   const urlWithOffset = !offset ? url : `${url}&offset=${offset}`;
 
@@ -153,9 +137,6 @@ const recursiveApiCall = async (records, callback, offset, url) => {
   }
 }
 
-/**
- * 
- */
 const getGroupsData = async () => {
   if (!process.env.AIRTABLE_AUTH_TOKEN) {
     return transformGroupsData(mockGroupsData());
@@ -166,9 +147,6 @@ const getGroupsData = async () => {
   return transformGroupsData(records);
 }
 
-/**
- * 
- */
 const getResourcesData = async () => {
   if (!process.env.AIRTABLE_AUTH_TOKEN) {
     return transformResourcesData(mockResourcesData());
@@ -179,9 +157,6 @@ const getResourcesData = async () => {
   return transformResourcesData(records);
 }
 
-/**
- * 
- */
 const getCmsRoutes = async () => {
     const pagesPath = resolvePath(CWD, PAGES_PATH);
     const files = await promises.readdir(pagesPath);
@@ -202,7 +177,7 @@ const getCmsRoutes = async () => {
         }
     })
 
-    return await Promise.all(array);
+    return Promise.all(array);
 }
 
 
@@ -214,7 +189,7 @@ const dedupeArray = (array) => Object.keys(array.reduce((result, value) => ({
 const createConfig = async () => {
   const groups = await getGroupsData();
   const resources = await getResourcesData();
-  const cmsRoutes = (await getCmsRoutes()).filter(({ order }) => order !== 0).sort((a, b) => a.order - b.order);
+  const cmsRoutes = (await getCmsRoutes()).sort((a, b) => a.order - b.order);
 
   const resourceTypes = dedupeArray(resources.map(({ type }) => type)).sort();
   const resourceSubTypes = dedupeArray(resources.map(({ subType }) => subType)).sort();
@@ -282,6 +257,44 @@ const createConfig = async () => {
         title: 'Cape Town Together',
         description: 'CCT is a network of Community Action Networks responding to the Covid-19 crisis in South Africa.'
     },
+
+    /**
+     * In additional to the above millimetr also passes an `internals` object to
+     * all templates automatically. 
+     *
+     * These values can be accessed via `millimetr.internals` and are as
+     * follows:
+     *
+     * - `millimetr.internal.routes.all`: A list of all routes created by
+     *   millimeter. Is an array of objects that contain `url` and `title`
+     *   values. Useful for creating site navigation.
+     *
+     * - `millimetr.internal.routes.active`: The current route millimetr is
+     *   building. Is an object that contain an `url` and `title` value. This is
+     *   useful if you want to highlight the current active route via CSS.
+     *
+     * However, there are instances where you would want to modify these values
+     * before exposing them via the above. The following (optional) callback
+     * allows you to do this.
+     *
+     * The callback automatically passes the default `internals` object above to
+     * templates as it's first argument. The callback should consume these
+     * values, modify them as needed and then return the modified values.
+     *
+     * Note that if you want to prevent any internal values from being passed to
+     * the templates then simply have the callback return `null`. 
+     *
+     */
+    transformInternals: (internals) => ({
+      ...internals,
+      routes: {
+          ...internals.routes,
+          all: internals.routes.all.filter(({ url }) => {
+            const page = cmsRoutes.find((page) => page.url === url);
+            return !page || page.order !== 0;
+          })
+      }
+    }),
 
     /**
      * This is where the majority of all millimetr logic sits.

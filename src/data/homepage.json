@@ -1,61 +1,105 @@
 {
-    "sections": [
+  "sections": [
+    {
+      "title": "Get Involved",
+      "icon": "hand",
+      "overview": "Start or join a Community Action Network",
+      "type": "default",
+      "buttons": [
         {
-            "title": "Get Involved",
-            "icon": "hand",
-            "overview": "Sign up now to join or start a Community Action Network.",
-            "type": "default",
-            "buttons": [
-                {
-                    "label": "Sign up now",
-                    "url": "https://form.jotform.com/200813205437042",
-                    "newTab": true
-                }
-            ]
-        },
-        {
-            "title": "Find a CAN",
-            "icon": "pin",
-            "overview": "",
-            "type": "embedded-search",
-            "buttons": [
-                {
-                    "label": "Browse CANs",
-                    "url": "/cans-directory",
-                    "newTab": false
-                },
-                {
-                    "label": "See a map of CANs",
-                    "url": "https://airtable.com/shrdUJhGEOiMVOr7q/tblUvcnqXzJTopscb/viwPz5HP6AlJMu5zQ",
-                    "newTab": true
-                }
-            ]
-        },
-        {
-            "title": "Start Organising",
-            "icon": "rocket",
-            "overview": "",
-            "type": "default",
-            "buttons": [
-                {
-                    "label": "Get started with your CAN",
-                    "url": "/start-organising",
-                    "newTab": false
-                }
-            ]
-        },
-        {
-            "title": "Join Our Group",
-            "icon": "facebook",
-            "overview": "",
-            "type": "default",
-            "buttons": [
-                {
-                    "label": "Join our Facebook group",
-                    "url": "https://www.facebook.com/groups/CapeTownTogether",
-                    "newTab": true
-                }
-            ]
+          "label": "Sign up now",
+          "url": "https://form.jotform.com/200813205437042",
+          "newTab": true
         }
-    ]
+      ]
+    },
+    {
+      "title": "Find a CAN",
+      "icon": "pin",
+      "overview": " ",
+      "type": "embedded-search",
+      "buttons": [
+        {
+          "label": "Browse CANs",
+          "url": "/cans-directory",
+          "newTab": false
+        },
+        {
+          "label": "See a map of CANs",
+          "url": "https://airtable.com/shrdUJhGEOiMVOr7q/tblUvcnqXzJTopscb/viwPz5HP6AlJMu5zQ",
+          "newTab": true
+        }
+      ]
+    },
+    {
+      "title": "Start Organising",
+      "icon": "rocket",
+      "overview": " ",
+      "type": "default",
+      "buttons": [
+        {
+          "label": "Get started with your CAN",
+          "url": "/start-organising",
+          "newTab": false
+        }
+      ]
+    },
+    {
+      "type": "default",
+      "buttons": [
+        {
+          "newTab": false,
+          "label": "See our safety guide",
+          "url": "https://capetowntogether.net/staying-safe"
+        }
+      ],
+      "title": "Staying Safe",
+      "icon": "shield",
+      "overview": " "
+    },
+    {
+      "type": "default",
+      "buttons": [
+        {
+          "newTab": false,
+          "label": "Posters, videos & other resources",
+          "url": "https://capetowntogether.net/resources/"
+        }
+      ],
+      "title": "Find Resources",
+      "icon": "clipboard",
+      "overview": "  "
+    },
+    {
+      "type": "default",
+      "buttons": [
+        {
+          "newTab": false,
+          "label": "How we work",
+          "url": "/about-ctt"
+        },
+        {
+          "newTab": false,
+          "label": "Get in touch",
+          "url": "/get-in-touch"
+        }
+      ],
+      "title": "About Cape Town Together",
+      "icon": "info",
+      "overview": " "
+    },
+    {
+      "title": "Join us online",
+      "icon": "facebook",
+      "overview": " ",
+      "type": "default",
+      "buttons": [
+        {
+          "label": "Join our Facebook group",
+          "url": "https://www.facebook.com/groups/CapeTownTogether",
+          "newTab": true
+        }
+      ]
+    }
+  ]
 }
