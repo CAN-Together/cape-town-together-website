@@ -13,7 +13,7 @@
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
-    "@millimetr/cli": "^1.1.5",
+    "@millimetr/cli": "^1.2.2",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "faker": "^4.1.0",

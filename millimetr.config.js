@@ -197,6 +197,12 @@ const createConfig = async () => {
 
   return {
     /**
+     * Required to generate an XML sitemap for search engines. If not passed
+     * then site will still build, but no sitemap will be generated.
+     */
+    sitemap: { siteUrl: 'https://capetowntogether.net', output: './sitemap.xml' },
+
+    /**
      * Files that should be copied directly to build.
      *
      * This is usually where you place all non-ejs files that you want in the
