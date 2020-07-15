@@ -1,8 +1,15 @@
 /**
  * @name initMenu
- * 
- * @description TODO Add description
- * 
+ *
+ * @description Adds interactive behaviour to dropdown menu navigation present
+ * on all pages.
+ *
+ * The dropdown is disabled until the JavaScript loads, upon which it will
+ * automatically navigate to the URL string in the `value` attribute in the
+ * clicked `option` HTML element.
+ *
+ * Note that the dropdown version of the menu only shows on small viewports.
+ *
  * @param {HTMLElement} menu 
  */
 var initMenu = function initMenu(menu) {
@@ -21,9 +28,21 @@ var initMenu = function initMenu(menu) {
 
 /**
  * @name initSearch
- * 
- * @description TODO Add description
- * 
+ *
+ * @description Adds interactive behaviour to search input on the homepage and
+ * directory pages.
+ *
+ * The search input is disabled until the JavaScript loads, upon which once it
+ * is focused the background in blurred out with a semi-transparent dark
+ * overlay. This overlay is removed by clicking outside of the input.
+ *
+ * A stringified array is saved in the `data-search-list` attribute in the
+ * search UI component. This array is passed through the third-party
+ * [Fuse](https://fusejs.io/) client-side fuzzy search library every time the
+ * contents of the input field changes. The values returned from this function
+ * is then used to show the matching results real-time underneath the seach
+ * input field.
+ *
  * @param {HTMLElement} search 
  */
 var initSearch = function initSearch(search) {
@@ -80,9 +99,19 @@ var initSearch = function initSearch(search) {
 
 /**
  * @name initResources
+ *
+ * @description Adds interactive behaviour to resources page.
+ *
+ * All three filter dropdowns are disabled until the JavaScript loads, upon
+ * which once either of them change it will update the resources that are shown
+ * on the page.
+ *
+ * Every time a dropdown value changes all resource items are looped over and
+ * their relevant data attribute values are compared against the values in the
+ * dropdown - and they are then hidden or displayed depending on whether they match.
  * 
- * @description TODO Add description
- * 
+ * Note that 'any' always matches.
+ *
  * @param {HTMLElement} resources 
  */
 var initResources = function initResources(resources) {
