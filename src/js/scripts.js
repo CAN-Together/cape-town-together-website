@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * @name initMenu
  * 
@@ -20,6 +18,7 @@ var initMenu = function initMenu(menu) {
 
   menu.addEventListener('change', changePage);
 };
+
 /**
  * @name initSearch
  * 
@@ -27,10 +26,56 @@ var initMenu = function initMenu(menu) {
  * 
  * @param {HTMLElement} search 
  */
-
-
 var initSearch = function initSearch(search) {
-  console.log('fire');
+  const input = search.querySelector('[data-search-input]');
+  const overlay = search.querySelector('[data-search-overlay]');
+  const list = search.querySelector('[data-search-list]');
+  const listValues = JSON.parse(list.getAttribute('data-search-list'));
+
+  const fuse = new Fuse(listValues, { keys: ['name'], threshold: 0.2 });
+
+  input.disabled = false;
+  input.placeholder = 'Search your area...'
+ 
+  const state = new Proxy({
+    search: '',
+    focused: false,
+  },
+  {
+    set: (obj, key, value) => {
+      obj[key] = value;
+
+      if (key === 'focused' && value === true) {
+        overlay.classList.add('search__overlay_active');
+        list.classList.add('search__list_active');
+        return;
+      }
+
+      if (key === 'focused') {
+        overlay.classList.remove('search__overlay_active');
+        list.classList.remove('search__list_active');
+        return;
+      }
+
+      if (key === 'search') {
+        const results = fuse.search(value).slice(0, 5).map(({ item: { name, link } }) => ({ name, link }));
+
+        list.innerHTML = results.map(({ name, link }) => (
+          `
+            <li key=${name} class="search__item">
+              <a href=${link} target="_blank" class="search__link">${name}</a>
+            </li>
+          `
+        )).join('')
+      }
+    }
+  })
+
+  input.addEventListener('focus', () => { state.focused = true });
+  input.addEventListener('input', ({ target: { value }}) => { state.search = value });
+
+  overlay.addEventListener('click', () => { state.focused = false });
+
 };
 
 /**
@@ -63,9 +108,9 @@ var initResources = function initResources(resources) {
 
         if (typeMatch && subTypeMatch && fileMatch) {
           element.classList.remove('resources__item_hidden');
+        } else {
+          element.classList.add('resources__item_hidden');
         }
-
-        element.classList.add('resources__item_hidden');
       })
 
       return true;
