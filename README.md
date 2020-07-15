@@ -32,6 +32,5 @@ _Note that if you are using VS Code please install the [EJS Syntax plugin](https
 - [Axios](https://github.com/axios/axios) used to abstract away REST API calls.
 - [Dotenv](https://www.npmjs.com/package/dotenv) is used to feed environment variables into build process.
 - [Netlify CMS](https://www.netlifycms.org/) is used to edit/create new pages.
-- [Preact](https://preactjs.com/) and [HTM](https://github.com/developit/htm) is used to create interactive widgets
 - [Babel](https://babeljs.io/) is used to transpile ES6+ for older browsers.
-
+- [Proxy Polyfill](https://www.npmjs.com/package/proxy-polyfill) is used to enable the `Proxy` functionality on older browsers.

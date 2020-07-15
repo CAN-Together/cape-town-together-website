@@ -9,12 +9,6 @@ const { sections } = require('./src/data/homepage.json');
 
 const CWD = process.cwd();
 const PAGES_PATH = './src/data/pages';
-
-
-/**
- * Embedded constants
- */
-
 const GROUPS_URL = `https://api.airtable.com/v0/app68ZSxKJJR3AoCB/Groups?api_key=${process.env.AIRTABLE_AUTH_TOKEN}`;
 const RESOURCES_URL = `https://api.airtable.com/v0/applihLcZN4vyf2Vq/Resource%20Library?api_key=${process.env.AIRTABLE_AUTH_TOKEN}`;
 
@@ -30,6 +24,18 @@ const MIME_DISPLAY_MAP = {
   'text/plain': 'Text document',
 }
 
+const MIME_TYPES = [
+  'application/pdf',
+  'video/mp4',
+  'text/html',
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/gif',
+  'audio/x-m4a',
+  'text/plain'
+]
+
 const DISPLAY_ORDER_MAP = {
   'PDF document': 0,
   'Graphic image': 1,
@@ -44,10 +50,6 @@ const CLUSTERS = [
     'Network Action Issues',
     'Community Action Networks (P-Z)',
 ]
-
-/*
- * Embedded helper functions
- */
 
 const mockGroupsData = () => new Array(50).fill(undefined).map(() => ({
   id: faker.random.uuid(),
@@ -82,7 +84,7 @@ const mockResourcesData = () => new Array(50).fill(undefined).map(() => ({
         url: faker.internet.url(),
         filename: faker.system.fileName(),
         size: faker.random.number(1000),
-        type: faker.system.mimeType(),
+        type: faker.random.arrayElement(MIME_TYPES),
         thumbnails: faker.random.boolean() ? undefined : {
           small: {
             url: `https://picsum.photos/id/${faker.random.number({ min: 1, max: 300 })}/50/40`,
@@ -329,9 +331,9 @@ const createConfig = async () => {
         title: 'Resources',
         template: './src/views/resources.ejs',
         resources,
+        formats: resourceFormats,
         types: resourceTypes,
         subTypes: resourceSubTypes,
-        formats: resourceFormats,
       },
       {
         url: '/cans-directory',

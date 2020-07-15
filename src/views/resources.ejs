@@ -10,11 +10,59 @@
       <main class="layout__content">
         <%- include('../includes/title', { icon: 'hand', text: ['Resources'], hierarchy: 1 }) %>
 
-        <div class="resources">
-          <div class="resources__controls"></div>
+        <div class="resources" data-resources>
+          <div class="resources__controls">
+            <div class="resources__filter">
+              <label class="dropdown">
+                <span class="dropdown__label">Type</span>
+
+                <select class="dropdown__select" data-resources="type-filter">
+                  <option selected value="any">Any</option>
+
+                  <% types.forEach((value) => { %>
+                    <option value="<%= value %>"><%= value %></option>
+                  <% }) %>
+                </select>
+              </label>
+            </div>
+
+            <div class="resources__filter">
+              <label class="dropdown">
+                <span class="dropdown__label">Sub-type</span>
+
+                <select class="dropdown__select" data-resources="sub-type-filter">
+                  <option selected value="any">Any</option>
+
+                  <% subTypes.forEach((value) => { %>
+                    <option value="<%= value %>"><%= value %></option>
+                  <% }) %>
+                </select>
+              </label>
+            </div>
+
+            <div class="resources__filter">
+              <label class="dropdown">
+                <span class="dropdown__label">File</span>
+
+                <select class="dropdown__select" data-resources="file-filter">
+                  <option selected value="any">Any</option>
+
+                  <% formats.forEach((value) => { %>
+                    <option value="<%= value %>"><%= value %></option>
+                  <% }) %>
+                </select>
+              </label>
+            </div>
+          </div>
           <ul class="resources__list">
             <% resources.forEach(({ title, format, type, subType, url, preview }) => { %>
-              <li class="resources__item">
+              <li 
+                class="resources__item"
+                data-resources="item"
+                data-resources-type="<%= type %>"
+                data-resources-sub-type="<%= subType %>"
+                data-resources-file="<%= format %>"
+              >
                 <a class="resources__link" href="<%= url %>" target="_blank">
                   <div class="resources__preview">
                     <% if (preview) { %>

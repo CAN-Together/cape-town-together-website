@@ -12,7 +12,17 @@
         <%- include('../includes/title', { icon: 'pin', text: ['CANs', 'Directory'], hierarchy: 1 }) %>
 
         <div class="directory__search">
-          <div data-javascript="search" data-javascript-groups="<%= JSON.stringify(groups) %>"></div>
+          <div class="search" data-search>
+            <div class="search__overlay" data-search-overlay></div>
+
+            <div class="search__content">
+              <div class="search__row">
+                <input name="search" class="search__input" data-search-input placeholder="" disabled />
+              </div>
+
+              <ul class="search__list" data-search-list="<%= JSON.stringify(groups) %>"></ul>
+            </div>
+          </div>
         </div>
 
         <ul class="directory__list">

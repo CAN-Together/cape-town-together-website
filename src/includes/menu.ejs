@@ -18,8 +18,12 @@
 
       <nav class="menu__nav">
         <div class="menu__dropdown">
-          <select class="dropdown dropdown_loading" data-javascript="menu-dropdown">
-            <%- !!routes.find(({ url }) => url === currentUrl) ? '' : '<option disabled selected>Navigate to:</option>'%>
+          <label class="dropdown">
+            <span class="dropdown__label">Navigate</span>
+
+            <select class="dropdown__select dropdown__select_loading" data-menu disabled>
+            <%- !!routes.find(({ url }) => url === currentUrl) ? '' : '<option disabled selected>Select an option</option>'%>
+            
             <% routes.forEach(({ url, title }) => { %>
               <option value="<%= url %>" <%= url === currentUrl ? 'selected' : '' %>>
                   <%= title %>

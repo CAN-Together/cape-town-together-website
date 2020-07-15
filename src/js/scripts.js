@@ -1,88 +1,94 @@
-/*
-* Helper functions
-*/
+"use strict";
 
 /**
+ * @name initMenu
  * 
+ * @description TODO Add description
+ * 
+ * @param {HTMLElement} menu 
  */
-const html = htm.bind(preact.h);
+var initMenu = function initMenu(menu) {
+  menu.classList.remove('dropdown__select_loading');
+  menu.disabled = false;
 
+  var changePage = function changePage(_ref) {
+    var target = _ref.target;
+    menu.classList.add('dropdown__select_loading');
+    menu.disabled = true;
+    window.location.href = target.value;
+  };
+
+  menu.addEventListener('change', changePage);
+};
 /**
- * @param {HTMLElement} menuDropdown 
+ * @name initSearch
+ * 
+ * @description TODO Add description
+ * 
+ * @param {HTMLElement} search 
  */
-const initMenu = (menuDropdown) => {
-  menuDropdown.classList.remove('dropdown_loading')
 
-  const changePage = ({ target }) => {
-      menuDropdown.classList.add('dropdown_loading')
-      window.location.href = target.value;
-  }
 
-  menuDropdown.addEventListener('change', changePage)
+var initSearch = function initSearch(search) {
+  console.log('fire');
 };
 
 /**
+ * @name initResources
  * 
- * @param {*} groups 
+ * @description TODO Add description
+ * 
+ * @param {HTMLElement} resources 
  */
-const createFuse = (groups) => groups ? () => new Fuse(groups, { keys: ['name'], threshold: 0.2 }) : () => ({ search: () => []});
+var initResources = function initResources(resources) {
+  const items = resources.querySelectorAll('[data-resources="item"]');
 
-const SearchWidget = ({ groups, startingValue }) => {
-  const [input, setInput] = preactHooks.useState(startingValue || '');
-  const [active, setActive] = preactHooks.useState(false);
+  const state = new Proxy({
+    type: 'any',
+    subType: 'any',
+    file: 'any',
+  },
+  {
+    set: (obj, key, value) => {
+      obj[key] = value;
 
-  const handleSetInput = preactHooks.useCallback(({ target }) => setInput(target.value), [])
-  const triggerFocus = preactHooks.useCallback(() => setActive(true), [])
-  const triggerNoFocus = preactHooks.useCallback(() => setActive(false), [])
+      items.forEach((element) => {
+        const type = element.getAttribute('data-resources-type');
+        const subType = element.getAttribute('data-resources-sub-type');
+        const file = element.getAttribute('data-resources-file');
 
-  const fuse = preactHooks.useMemo(createFuse(groups), [groups])
-  const searchResults = fuse.search(input).slice(0, 5).map(({ item: { name, link } }) => ({ name, link }));
+        const typeMatch = obj.type === 'any' || obj.type === type;
+        const subTypeMatch = obj.subType === 'any' || obj.subType === subType;
+        const fileMatch =  obj.file === 'any' || obj.file === file;
 
-  return html`
-    <div class="search">
-      <div class="search__overlay ${active ? 'search__overlay_active' : ''}" onClick=${triggerNoFocus}></div>
+        if (typeMatch && subTypeMatch && fileMatch) {
+          element.classList.remove('resources__item_hidden');
+        }
 
-      <div class="search__content">
-        <div class="search__row">
-          <input value=${input} name="search" onInput=${handleSetInput} class="search__input" placeholder="search your area..." onFocus=${triggerFocus} />
-        </div>
+        element.classList.add('resources__item_hidden');
+      })
 
-        <ul class="search__list ${active ? 'search__list_active' : ''}">
-          ${searchResults.map(({ name, link }) => html`
-            <li key=${name} class="search__item">
-              <a href=${link} target="_blank" class="search__link">${name}</a>
-            </li>
-          `)}
-        </ul>
-      </div>
-    </div>
-  `
-}
+      return true;
+    }
+  })
 
-/**
- * @param {HTMLElement} search 
- */
-const initJs = (search) => {
-  const groups = JSON.parse(search.getAttribute('data-javascript-groups'));
-  const urlParams = new URLSearchParams(window.location.search);
-  preact.render(html`<${SearchWidget} groups=${groups} startingValue=${urlParams.get('search') || ''} />`, search);
-}
+  const typeFilter = resources.querySelector('[data-resources="type-filter"]');
+  const subTypeFilter = resources.querySelector('[data-resources="sub-type-filter"]');
+  const fileFilter = resources.querySelector('[data-resources="file-filter"]');
 
-/**
- * @param {HTMLElement} search 
- */
-const initSearch = (search) => {
-  const groups = JSON.parse(search.getAttribute('data-javascript-groups'));
-  const urlParams = new URLSearchParams(window.location.search);
-  preact.render(html`<${SearchWidget} groups=${groups} startingValue=${urlParams.get('search') || ''} />`, search);
-}
+  typeFilter.addEventListener('change', ({ target }) => { state.type = target.value });
+  subTypeFilter.addEventListener('change', ({ target }) => { state.subType = target.value });
+  fileFilter.addEventListener('change', ({ target }) => { state.file = target.value });
+};
 
-/**
- * Primary side-effect
+/*
+ * Side-effects
  */
 
-const menuDropdown = document.querySelector('[data-javascript="menu-dropdown"]');
-const search = document.querySelector('[data-javascript="search"]');
+var menu = document.querySelector('[data-menu]');
+var search = document.querySelector('[data-search]');
+var resources = document.querySelector('[data-resources]');
 
-if (menuDropdown) initMenu(menuDropdown);
+if (menu) initMenu(menu);
 if (search) initSearch(search);
+if (resources) initResources(resources);
