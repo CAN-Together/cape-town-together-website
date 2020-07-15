@@ -48,13 +48,13 @@ var initSearch = function initSearch(search) {
       if (key === 'focused' && value === true) {
         overlay.classList.add('search__overlay_active');
         list.classList.add('search__list_active');
-        return;
+        return true;
       }
 
       if (key === 'focused') {
         overlay.classList.remove('search__overlay_active');
         list.classList.remove('search__list_active');
-        return;
+        return true;
       }
 
       if (key === 'search') {
@@ -67,13 +67,13 @@ var initSearch = function initSearch(search) {
             </li>
           `
         )).join('')
+        return true;
       }
     }
   })
 
   input.addEventListener('focus', () => { state.focused = true });
   input.addEventListener('input', ({ target: { value }}) => { state.search = value });
-
   overlay.addEventListener('click', () => { state.focused = false });
 
 };
