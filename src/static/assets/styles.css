@@ -937,7 +937,8 @@ body {
  */
 
 .resources__filter {
-  padding-top: 1rem;
+  padding: 0.5rem;
+  width: 100%;
 }
 
 .resources__list {
@@ -1005,4 +1006,8 @@ body {
 
 .resources__link:hover {
   background: #419a7d30;
+}
+
+.resources__controls {
+  display: flex;
 }
