@@ -16,7 +16,7 @@
     "@babel/preset-env": "^7.10.2",
     "@millimetr/cli": "^1.2.3",
     "@storybook/html": "^5.3.19",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-loader": "^8.1.0",
     "dotenv": "^8.2.0",
     "faker": "^4.1.0",
